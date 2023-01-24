@@ -20,17 +20,17 @@ int main(void)
     t_bunny_window           *win;
     t_bunny_pixelarray       *px;
     t_accurate_pos           pos;
-    t_accurate_pos           apos;
-    t_bunny_position         post;
-    t_bunny_position         apost;
+    t_accurate_pos           post;
+    t_bunny_position         bpos;
+    t_bunny_position         bpost;
     double                   angle;
 
     int mx[6 * 6] = {
         0, 1, 1, 1, 1, 1,
+        1, 0, 0, 0, 1, 1,
         1, 0, 0, 0, 0, 1,
         1, 0, 0, 0, 0, 1,
-        1, 0, 0, 1, 0, 1,
-        1, 1, 0, 0, 0, 1,
+        1, 1, 0, 0, 1, 1,
         1, 1, 1, 1, 1, 1,
     };
     struct map map;
@@ -49,15 +49,15 @@ int main(void)
     clear_pixelarray(px, BLACK);
     refresh(win, px);
     pos = div_or_mult_pos(&pos, map.tile_size, '*');
-    apost = pos_from_accurate(&pos);
+    bpos = pos_from_accurate(&pos);
     pos = div_or_mult_pos(&pos, map.tile_size, '/');
     refr = 10000;
     while (refr != 0) {
-        apos = send_ray(&map, &pos, angle);
-        apos = div_or_mult_pos(&apos, map.tile_size, '*');
-        post = pos_from_accurate(&apos);
+        post = send_ray(&map, &pos, angle);
+        post = div_or_mult_pos(&post, map.tile_size, '*');
+        bpost = pos_from_accurate(&post);
         //clear_pixelarray(px, BLACK);
-        stu_draw_line(px, &apost, &post, GREEN);
+        stu_draw_line(px, &bpos, &bpost, GREEN);
         angle += (M_PI / 360);
         refresh(win, px);
         refr -= 1;

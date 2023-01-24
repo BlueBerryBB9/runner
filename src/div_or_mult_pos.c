@@ -17,5 +17,5 @@ t_accurate_pos div_or_mult_pos(t_accurate_pos *pos, int coef, char c)
         pos->x /= coef;
         pos->y /= coef;
     }
-    return *pos;
+    return (*pos);
 }
