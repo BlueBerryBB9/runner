@@ -8,7 +8,7 @@
 
 #include "laser.h"
 
-t_accurate_pos div_or_mult_pos(t_accurate_pos *pos, int coef, char c)
+void div_or_mult_pos(t_accurate_pos *pos, int coef, char c)
 {
     if (c == '*') {
         pos->x *= coef;
@@ -17,5 +17,4 @@ t_accurate_pos div_or_mult_pos(t_accurate_pos *pos, int coef, char c)
         pos->x /= coef;
         pos->y /= coef;
     }
-    return (*pos);
 }

@@ -10,12 +10,12 @@
 #include "laser.h"
 
 t_accurate_pos move_forward(const t_accurate_pos *start,
-                            double               angle,
-                            double               len)
+                            double angle,
+                            double len)
 {
     t_accurate_pos pos;
 
     pos.x = (cos(angle) * len) + start->x;
     pos.y = (sin(angle) * len) + start->y;
-    return (pos);
+    return pos;
 }

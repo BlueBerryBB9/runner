@@ -13,7 +13,9 @@ SRCS	=	src/main.c	\
 		src/move_forward.c	\
 		src/pos_from_accurate.c	\
 		src/put_pixel.c	\
-		src/send_ray.c
+		src/send_ray.c	\
+		src/radar.c	\
+		src/refresh.c
 
 OBJS	=	$(SRCS:.c=.o)
 
@@ -53,7 +55,7 @@ clean:
 	@$(RM) $(OBJS)
 
 clear:
-	rm src/*.c~ include/*~
+	rm src/*.c~ include/*.h~
 
 fclean: clean
 	@$(RM) $(NAME)

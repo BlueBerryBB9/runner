@@ -1,5 +1,4 @@
 #include <assert.h>
-#include "map.h"
 #include "laser.h"
 
 /*
@@ -7,39 +6,40 @@
  * -llapin -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system -lstdc++ -lm
  */
 
-static void refresh(t_bunny_window *win, t_bunny_pixelarray *px)
-{
-    bunny_blit(&win->buffer, &px->clipable, NULL);
-    bunny_display(win);
-    bunny_usleep(1e1);
-}
+int radar(struct map *map,
+          t_accurate_pos *pos,
+          t_bunny_window *win,
+          t_bunny_pixelarray *px,
+          double angle);
 
 int main(void)
 {
-    int refr;
     t_bunny_window           *win;
     t_bunny_pixelarray       *px;
     t_accurate_pos           pos;
-    t_accurate_pos           post;
-    t_bunny_position         bpos;
-    t_bunny_position         bpost;
     double                   angle;
 
-    int mx[6 * 6] = {
-        0, 1, 1, 1, 1, 1,
-        1, 0, 0, 0, 1, 1,
-        1, 0, 0, 0, 0, 1,
-        1, 0, 0, 0, 0, 1,
-        1, 1, 0, 0, 1, 1,
-        1, 1, 1, 1, 1, 1,
+    int mx[12 * 12] = {
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1,
+        1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1,
+        1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1,
+        1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1,
+        1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1,
+        1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1,
+        1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1,
+        1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1,
+        1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     };
     struct map map;
-    map.width     = 6;
-    map.height    = 6;
-    map.tile_size = 100;
+    map.width     = 12;
+    map.height    = 12;
+    map.tile_size = 80;
     map.map       = &mx[0];
-    pos.x         = 3;
-    pos.y         = 3;
+    pos.x         = 1.5;
+    pos.y         = 1.5;
     angle         = 0;
     win           = bunny_start(map.width * map.tile_size,
                                 map.height * map.tile_size,
@@ -48,21 +48,7 @@ int main(void)
     px = bunny_new_pixelarray(win->buffer.width, win->buffer.height);
     clear_pixelarray(px, BLACK);
     refresh(win, px);
-    pos = div_or_mult_pos(&pos, map.tile_size, '*');
-    bpos = pos_from_accurate(&pos);
-    pos = div_or_mult_pos(&pos, map.tile_size, '/');
-    refr = 10000;
-    while (refr != 0) {
-        post = send_ray(&map, &pos, angle);
-        post = div_or_mult_pos(&post, map.tile_size, '*');
-        bpost = pos_from_accurate(&post);
-        //clear_pixelarray(px, BLACK);
-        stu_draw_line(px, &bpos, &bpost, GREEN);
-        angle += (M_PI / 360);
-        refresh(win, px);
-        refr -= 1;
-    }
-    refresh(win, px);
+    radar(&map, &pos, win, px, angle);
     bunny_delete_clipable(&px->clipable);
     bunny_stop(win);
     return (0);
