@@ -7,7 +7,7 @@
  * description: move forward
  */
 
-#include "laser.h"
+#include "graphic.h"
 
 t_accurate_pos move_forward(const t_accurate_pos *start,
                             double angle,

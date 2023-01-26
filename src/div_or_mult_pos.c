@@ -6,7 +6,7 @@
  * description: div or mult pos
  */
 
-#include "laser.h"
+#include "graphic.h"
 
 void div_or_mult_pos(t_accurate_pos *pos, int coef, char c)
 {

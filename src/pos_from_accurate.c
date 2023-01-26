@@ -6,8 +6,7 @@
  * description: convert accurate to pos
  */
 
-#include "laser.h"
-#include <stdio.h>
+#include "graphic.h"
 
 t_bunny_position pos_from_accurate(const t_accurate_pos *start)
 {

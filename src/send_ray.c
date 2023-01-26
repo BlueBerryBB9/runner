@@ -6,10 +6,7 @@
  * description: send ray
  */
 
-#include "laser.h"
-#include "map.h"
-
-#include <stdio.h>
+#include "graphic.h"
 
 static t_accurate_pos rev_send_ray(struct map *map,
                                    t_accurate_pos *start,

@@ -7,18 +7,12 @@
  */
 
 
-#include "laser.h"
+#include "graphic.h"
 
 /*
  * gcc -W -Werror -Wextra -Wall src/\\* -Iinclude/
  * -llapin -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system -lstdc++ -lm
  */
-
-int radar(struct map *map,
-          t_accurate_pos *pos,
-          t_bunny_window *win,
-          t_bunny_pixelarray *px,
-          double angle);
 
 int main(void)
 {
@@ -27,24 +21,24 @@ int main(void)
     t_accurate_pos           pos;
     double                   angle;
 
-    int mx[12 * 12] = {
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-        1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1,
-        1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1,
-        1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1,
-        1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1,
-        1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1,
-        1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1,
-        1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1,
-        1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1,
-        1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 1,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    int mx[14 * 12] = {
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
+        1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1,
+        1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1,
+        1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1,
+        1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1,
+        1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1,
+        1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1,
+        1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1,
+        1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1,
+        1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     };
     struct map map;
-    map.width     = 12;
+    map.width     = 14;
     map.height    = 12;
-    map.tile_size = 80;
+    map.tile_size = 50;
     map.map       = &mx[0];
     pos.x         = 1.5;
     pos.y         = 1.5;
@@ -56,6 +50,7 @@ int main(void)
     px = bunny_new_pixelarray(win->buffer.width, win->buffer.height);
     clear_pixelarray(px, BLACK);
     refresh(win, px);
+    draw_map(&map, px);
     radar(&map, &pos, win, px, angle);
     bunny_delete_clipable(&px->clipable);
     bunny_stop(win);

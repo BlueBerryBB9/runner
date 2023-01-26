@@ -6,7 +6,7 @@
  * description: refresh win
  */
 
-#include "laser.h"
+#include "graphic.h"
 
 void refresh(t_bunny_window *win, t_bunny_pixelarray *px)
 {

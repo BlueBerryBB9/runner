@@ -6,24 +6,7 @@
  * description: draw line
  */
 
-#include "laser.h"
-
-static float get_ratio(int a, int b, int x)
-{
-    float ratio;
-
-    ratio = ((float)x - (float)a) / ((float)b - (float)a);
-
-    return (ratio);
-}
-
-static int get_value(int a, int b, float ratio)
-{
-    int x;
-
-    x = (ratio * (b - a)) + a;
-    return (x);
-}
+#include "graphic.h"
 
 void stu_draw_line(t_bunny_pixelarray *px,
                    t_bunny_position *pos_a,

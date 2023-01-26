@@ -14,8 +14,12 @@ SRCS	=	src/main.c	\
 		src/pos_from_accurate.c	\
 		src/put_pixel.c	\
 		src/send_ray.c	\
+		src/refresh.c	\
 		src/radar.c	\
-		src/refresh.c
+		src/draw_map.c	\
+		src/get_ratio.c	\
+		src/get_value.c	\
+		src/draw_block.c
 
 OBJS	=	$(SRCS:.c=.o)
 
