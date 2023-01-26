@@ -7,7 +7,6 @@
  */
 
 #include "laser.h"
-#include <stdio.h>
 
 int radar(struct map *map,
           t_accurate_pos *pos,
@@ -16,12 +15,12 @@ int radar(struct map *map,
           double angle)
 {
     int refr;
-    double direction;
+    //double direction;
     t_accurate_pos post;
     t_bunny_position bpos;
     t_bunny_position bpost;
 
-    direction = 1.5 * M_PI; /* ici: Sud; desc: angle vers Nord, sud, ... */
+    //    direction = 1.5 * M_PI; /* ici: Sud; desc: angle vers Nord, sud, ... */
     refr = 360;
     while (refr != 0) {
         div_or_mult_pos(pos, map->tile_size, '*');

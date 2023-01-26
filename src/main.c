@@ -1,4 +1,12 @@
-#include <assert.h>
+/*
+ * E89 Pedagogical & Technical Lab
+ * project:     runner
+ * created on:  2023-01-24 - 09:11 +0100
+ * 1st author:  martin.leroy - martin.leroy
+ * description: main
+ */
+
+
 #include "laser.h"
 
 /*
