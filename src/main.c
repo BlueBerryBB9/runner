@@ -8,7 +8,7 @@
 
 
 #include "graphic.h"
-
+#include "radar.h"
 /*
  * gcc -W -Werror -Wextra -Wall src/\\* -Iinclude/
  * -llapin -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system -lstdc++ -lm
@@ -19,7 +19,6 @@ int main(void)
     t_bunny_window           *win;
     t_bunny_pixelarray       *px;
     t_accurate_pos           pos;
-    double                   angle;
 
     int mx[14 * 12] = {
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -42,7 +41,7 @@ int main(void)
     map.map       = &mx[0];
     pos.x         = 1.5;
     pos.y         = 1.5;
-    angle         = 0;
+    //    angle         = 0;
     win           = bunny_start(map.width * map.tile_size,
                                 map.height * map.tile_size,
                                 false,
@@ -51,7 +50,7 @@ int main(void)
     clear_pixelarray(px, BLACK);
     refresh(win, px);
     draw_map(&map, px);
-    radar(&map, &pos, win, px, angle);
+    labyrinth_solve(&map, &pos, win, px);
     bunny_delete_clipable(&px->clipable);
     bunny_stop(win);
     return (0);

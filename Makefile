@@ -15,11 +15,15 @@ SRCS	=	src/main.c	\
 		src/put_pixel.c	\
 		src/send_ray.c	\
 		src/refresh.c	\
-		src/radar.c	\
+		src/labyrinth_solve.c	\
 		src/draw_map.c	\
 		src/get_ratio.c	\
 		src/get_value.c	\
-		src/draw_block.c
+		src/draw_block.c	\
+		src/give_t_pos.c	\
+		src/change_dir.c	\
+		src/check_nb.c	\
+		src/moving.c
 
 OBJS	=	$(SRCS:.c=.o)
 

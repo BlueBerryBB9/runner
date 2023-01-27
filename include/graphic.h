@@ -62,4 +62,6 @@ float get_ratio(int a, int b, int x);
 
 int get_value(int a, int b, float ratio);
 
+#include "radar.h"
+
 #endif
