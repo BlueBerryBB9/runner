@@ -36,13 +36,12 @@ save:
 	git add Makefile src/*.c include/*.h
 	git commit -m "$(NAME) Sauvegarde"
 	git push
+	git status
 
 exe:
-	git status
 	make
 	./$(NAME)
 	make fclean
-	git status
 
 clean:
 	@$(RM) $(OBJS)
