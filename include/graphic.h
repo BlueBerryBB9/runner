@@ -17,7 +17,7 @@
 typedef t_bunny_accurate_position t_accurate_pos;
 
 #include "labyrinth_solver.h"
-#include "draw_pacman.h"
+#include "character.h"
 
 void clear_pixelarray(t_bunny_pixelarray *pxa, unsigned int color);
 
