@@ -6,7 +6,6 @@
  * description: moving radar
  */
 
-#include "draw_pacman.h"
 #include "graphic.h"
 
 static void fix_angle(double *angle, double direction)
@@ -38,7 +37,7 @@ int labyrinth_solve(struct map *map,
         div_or_mult_pos(&post, map->tile_size, '*');
         clear_pixelarray(px, BLACK);
         draw_map(map, px);
-        draw_pacman(px, bpos, direction, 11);
+        draw_pacman(px, bpos, direction, 12);
         if (moving(map, pos, &direction) == 2) {
             //celebration();
             return 2;

@@ -25,18 +25,12 @@ static void axe_x(t_bunny_pixelarray *px,
                    double direction,
                    int radius)
 {
-    
-}
-
-static void mk_mouth(t_bunny_pixelarray *px,
-                   t_bunny_position pos,
-                   double direction,
-                   int radius)
-{
-    int i;
     t_bunny_position bpos;
+    int i;
+    int j;
 
     i = -1 * (radius / 4);
+    j = (radius / 4);
     if (direction == 0 || direction == 2 * M_PI) {
         bpos.x = (radius + 1) + pos.x;
         bpos.y = i + pos.y;
@@ -45,6 +39,25 @@ static void mk_mouth(t_bunny_pixelarray *px,
         bpos.x = (-1 * (radius + 1)) + pos.x;
         bpos.y = i + pos.y;
     }
+    while (i != j + 1) {
+        stu_draw_line(px, &pos, &bpos, BLACK);
+        bpos.y += 1;
+        i += 1;
+    }
+}
+
+
+static void axe_y(t_bunny_pixelarray *px,
+                  t_bunny_position pos,
+                  double direction,
+                  int radius)
+{
+    t_bunny_position bpos;
+    int i;
+    int j;
+
+    i = -1 * (radius / 4);
+    j = (radius / 4);
     if (direction == 0.5 * M_PI) {
         bpos.x = i + pos.x;
         bpos.y = (-1 * (radius + 1)) + pos.y;
@@ -53,18 +66,22 @@ static void mk_mouth(t_bunny_pixelarray *px,
         bpos.x = i + pos.x;
         bpos.y = (radius + 1) + pos.y;
     }
+    while (i != j + 1) {
+        stu_draw_line(px, &pos, &bpos, BLACK);
+        bpos.x += 1;
+        i += 1;
+    }
+}
+
+static void mk_mouth(t_bunny_pixelarray *px,
+                   t_bunny_position pos,
+                   double direction,
+                   int radius)
+{
     if (direction == 0 || direction == 2 * M_PI || direction == M_PI) {
-        while (i != 4) {
-            stu_draw_line(px, &pos, &bpos, BLACK);
-            bpos.y += 1;
-            i += 1;
-        }
+        axe_x(px, pos, direction, radius);
     } else {
-        while (i != 4) {
-            stu_draw_line(px, &pos, &bpos, BLACK);
-            bpos.x += 1;
-            i += 1;
-        }
+        axe_y(px, pos, direction, radius);
     }
 }
 
