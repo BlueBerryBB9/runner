@@ -6,24 +6,7 @@
 
 NAME	=	runner
 
-SRCS	=	src/main.c	\
-		src/clear_pixelarray.c	\
-		src/div_or_mult_pos.c	\
-		src/draw_line.c	\
-		src/move_forward.c	\
-		src/pos_from_accurate.c	\
-		src/put_pixel.c	\
-		src/send_ray.c	\
-		src/refresh.c	\
-		src/labyrinth_solve.c	\
-		src/draw_map.c	\
-		src/get_ratio.c	\
-		src/get_value.c	\
-		src/draw_block.c	\
-		src/give_t_pos.c	\
-		src/change_dir.c	\
-		src/check_nb.c	\
-		src/moving.c
+SRCS	=	$(shell find src/ -name "*.c")
 
 OBJS	=	$(SRCS:.c=.o)
 
@@ -63,9 +46,9 @@ clean:
 	@$(RM) $(OBJS)
 
 clear:
-	rm src/*.c~ include/*.h~
+	rm */*/*~
 
-fclean: clean
+fclean: clean clear
 	@$(RM) $(NAME)
 
 re: fclean all

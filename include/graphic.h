@@ -16,7 +16,16 @@
 
 typedef t_bunny_accurate_position t_accurate_pos;
 
+#include "labyrinth_solver.h"
+#include "draw_pacman.h"
+
 void clear_pixelarray(t_bunny_pixelarray *pxa, unsigned int color);
+
+void stu_set_circle(t_bunny_pixelarray *pxa,
+                    int x,
+                    int y,
+                    int radius,
+                    int colour);
 
 void draw_impact(struct map *map,
                  t_bunny_pixelarray *pxa,
@@ -62,6 +71,6 @@ float get_ratio(int a, int b, int x);
 
 int get_value(int a, int b, float ratio);
 
-#include "radar.h"
+double deg_to_rads(int degrees);
 
 #endif

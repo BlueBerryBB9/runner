@@ -8,7 +8,6 @@
 
 
 #include "graphic.h"
-#include "radar.h"
 /*
  * gcc -W -Werror -Wextra -Wall src/\\* -Iinclude/
  * -llapin -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system -lstdc++ -lm

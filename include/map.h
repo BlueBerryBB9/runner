@@ -17,4 +17,4 @@ struct map {
     int *map;
 };
 
-#endif /* MAP_H_ */
+#endif
