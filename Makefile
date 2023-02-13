@@ -38,9 +38,11 @@ save:
 	git push
 
 exe:
+	git status
 	make
 	./$(NAME)
 	make fclean
+	git status
 
 clean:
 	@$(RM) $(OBJS)
