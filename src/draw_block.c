@@ -17,8 +17,8 @@ void draw_block(struct map *map,
 
     pos.x = origin.x * map->tile_size;
     pos.y = origin.y * map->tile_size;
-    while (pos.y <= (origin.y + 1) * map->tile_size){
-        while (pos.x <= map->tile_size * (origin.x + 1)) {
+    while (pos.y < (origin.y + 1) * map->tile_size){
+        while (pos.x < map->tile_size * (origin.x + 1)) {
             put_pixel(px, &pos, color);
             pos.x += 1;
         }

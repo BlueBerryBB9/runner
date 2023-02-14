@@ -33,7 +33,7 @@ $(NAME): $(OBJS)
 
 save:
 	git status
-	git add Makefile src/*/*.c include/*.h
+	git add Makefile */*.c include/*.h
 	git commit -m "$(NAME) Sauvegarde"
 	git push
 	git status
