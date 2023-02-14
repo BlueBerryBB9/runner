@@ -36,7 +36,7 @@ int main(void)
     struct map map;
     map.width     = 15;
     map.height    = 12;
-    map.tile_size = 50;
+    map.tile_size = 87;
     map.map       = &mx[0];
     pos.x         = 1.5;
     pos.y         = 1.5;
@@ -49,7 +49,7 @@ int main(void)
     refresh(win, px);
     draw_map(&map, px);
     if (labyrinth_solve(&map, pos, win, px) == 2) {
-        draw_level_end(map, px, win, 6);
+        draw_level_end(map, px, win, 3);
     }
     bunny_delete_clipable(&px->clipable);
     bunny_stop(win);
