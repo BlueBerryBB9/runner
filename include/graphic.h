@@ -36,11 +36,9 @@ void stu_set_circle(t_bunny_pixelarray *pxa,
                     int radius,
                     int colour);
 
-/*
- * void draw_impact(struct map *map,
- *                  t_bunny_pixelarray *pxa,
- *                  const t_accurate_pos *start, double angle);
- */
+void draw_impact(struct map *map,
+                 t_bunny_pixelarray *pxa,
+                 const t_accurate_pos *start, double angle);
 
 void draw_map(struct map *map, t_bunny_pixelarray *px);
 
@@ -56,7 +54,8 @@ void draw_block(struct map *map,
 int radar(struct map *map,
           t_accurate_pos *pos,
           t_bunny_window *win,
-          t_bunny_pixelarray *px);
+          t_bunny_pixelarray *px,
+          double angle);
 
 void refresh(t_bunny_window *win, t_bunny_pixelarray *px);
 

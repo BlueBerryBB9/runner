@@ -12,13 +12,19 @@ static t_accurate_pos rev_send_ray(struct map *map,
                                    t_accurate_pos *start,
                                    double angle,
                                    int step)
-//                                 int *i)
 {
     t_accurate_pos pos;
     t_bunny_position post;
 
     pos.x = start->x;
     pos.y = start->y;
+    div_or_mult_pos(&pos, map->tile_size, '*');
+    pos = move_forward(&pos, angle, step);
+    div_or_mult_pos(&pos, map->tile_size, '/');
+    post = pos_from_accurate(&pos);
+    if (map->map[(map->width * post.y) + post.x] == 0) {
+        return pos;
+    }
     while (pos.x < map->width && pos.y < map->height
            && pos.x > 0 && pos.y > 0) {
         div_or_mult_pos(&pos, map->tile_size, '*');
@@ -28,22 +34,34 @@ static t_accurate_pos rev_send_ray(struct map *map,
         if (map->map[(map->width * post.y) + post.x] == 0) {
             return pos;
         }
-        //*i += 1;
     }
     return pos;
+}
+
+static void choose_step_size(int *step, int tile_size)
+{
+    if (tile_size < 20 && tile_size >= 3) {
+        *step = 2;
+        return;
+    } else if (tile_size <= 2) {
+        *step = 1;
+        return;
+    } else {
+        *step = tile_size / 10;
+        return;
+    }
+    return;
 }
 
 t_accurate_pos send_ray(struct map *map,
                         const t_accurate_pos *start,
                         double angle)
 {
-    //int i; /* compte le nombre d'opération */
     int step;
     t_accurate_pos pos;
     t_bunny_position post;
 
-    //i = 0;
-    step = map->tile_size / 10;
+    choose_step_size(&step, map->tile_size);
     pos.x = start->x;
     pos.y = start->y;
     while (pos.x < map->width && pos.y < map->height && pos.x > 0 && pos.y > 0) {
@@ -52,12 +70,14 @@ t_accurate_pos send_ray(struct map *map,
         div_or_mult_pos(&pos, map->tile_size, '/');
         post = pos_from_accurate(&pos);
         if (map->map[(map->width * post.y) + post.x] == 1) {
+            if (step == 1) {
+                return pos;
+            }
             angle += M_PI;
             step = 1;
-            pos = rev_send_ray(map, &pos, angle, step);//, &i);
+            pos = rev_send_ray(map, &pos, angle, step);
             return pos;
         }
-        //i += 1;
     }
     return pos;
 }
