@@ -6,7 +6,7 @@
  * description: moving radar
  */
 
-#include "graphic.h"
+#include "labyrinth_solver.h"
 
 static void fix_angle(double *angle, double direction)
 {
@@ -34,7 +34,7 @@ int labyrinth_solve(struct map *map,
         div_or_mult_pos(&pos, map->tile_size, '/');
         clear_pixelarray(px, BLACK);
         draw_map(map, px);
-        draw_pacman(px, bpos, direction, 12);
+        draw_pacman(px, bpos, direction, map->tile_size / 4);
         if (moving(map, &pos, &direction) == 2) {
             return 2;
         }

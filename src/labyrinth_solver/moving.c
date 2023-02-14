@@ -6,7 +6,7 @@
  * description: change pos
  */
 
-#include "graphic.h"
+#include "labyrinth_solver.h"
 
 int moving(struct map *map,
            t_accurate_pos *pos,

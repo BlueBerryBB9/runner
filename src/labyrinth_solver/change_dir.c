@@ -6,7 +6,7 @@
  * description: change direction
  */
 
-#include "graphic.h"
+#include "labyrinth_solver.h"
 
 int change_dir(struct map *map,
                  t_accurate_pos *pos,

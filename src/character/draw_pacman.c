@@ -6,7 +6,7 @@
  * description: draw pacman
  */
 
-#include "graphic.h"
+#include "character.h"
 
 static void mk_body(t_bunny_pixelarray *px, t_bunny_position pos, int radius)
 {
@@ -92,5 +92,4 @@ void draw_pacman(t_bunny_pixelarray *px,
 {
     mk_body(px, pos, radius);
     mk_mouth(px, pos, direction, radius);
-    direction += 1;
 }

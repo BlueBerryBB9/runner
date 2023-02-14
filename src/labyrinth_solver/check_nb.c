@@ -6,7 +6,7 @@
  * description: check nb
  */
 
-#include "graphic.h"
+#include "labyrinth_solver.h"
 
 int check_nb(int nb, double *dir)
 {
