@@ -9,6 +9,8 @@
 #include <lapin.h>
 #include <math.h>
 #include "map.h"
+#include "labyrinth_solver.h"
+#include "character.h"
 
 #ifndef GRAPHIC_H_
 
@@ -16,12 +18,10 @@
 
 typedef t_bunny_accurate_position t_accurate_pos;
 
-void draw_level_end(t_bunny_pixelarray *px,
+void draw_level_end(struct map map,
+                    t_bunny_pixelarray *px,
                     t_bunny_window *win,
                     int time);
-
-#include "labyrinth_solver.h"
-#include "character.h"
 
 unsigned int mk_colour(unsigned char r,
                        unsigned char g,
@@ -36,9 +36,11 @@ void stu_set_circle(t_bunny_pixelarray *pxa,
                     int radius,
                     int colour);
 
-void draw_impact(struct map *map,
-                 t_bunny_pixelarray *pxa,
-                 const t_accurate_pos *start, double angle);
+/*
+ * void draw_impact(struct map *map,
+ *                  t_bunny_pixelarray *pxa,
+ *                  const t_accurate_pos *start, double angle);
+ */
 
 void draw_map(struct map *map, t_bunny_pixelarray *px);
 
@@ -58,6 +60,7 @@ int radar(struct map *map,
 
 void refresh(t_bunny_window *win, t_bunny_pixelarray *px);
 
+void draw_map(struct map *map, t_bunny_pixelarray *px);
 
 void stu_draw_line(t_bunny_pixelarray *px,
                    t_bunny_position *pos_a,

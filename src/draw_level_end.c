@@ -31,7 +31,8 @@ static void draw_map_wall_color(struct map *map,
     }
 }
 
-void draw_level_end(t_bunny_pixelarray *px,
+void draw_level_end(struct map map,
+                    t_bunny_pixelarray *px,
                     t_bunny_window *win,
                     int time)
 {
@@ -52,7 +53,7 @@ void draw_level_end(t_bunny_pixelarray *px,
     struct map nmap;
     nmap.width     = 15;
     nmap.height    = 12;
-    nmap.tile_size = 50;
+    nmap.tile_size = map.tile_size;
     nmap.map       = &mxx[0];
     while (time != 0) {
         if (time % 2 == 0) {

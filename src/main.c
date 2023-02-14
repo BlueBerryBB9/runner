@@ -49,7 +49,7 @@ int main(void)
     refresh(win, px);
     draw_map(&map, px);
     if (labyrinth_solve(&map, pos, win, px) == 2) {
-        draw_level_end(px, win, 6);
+        draw_level_end(map, px, win, 6);
     }
     bunny_delete_clipable(&px->clipable);
     bunny_stop(win);
