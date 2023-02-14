@@ -38,16 +38,11 @@ save:
 	git push
 	git status
 
-exe:
-	make
-	./$(NAME)
-	make fclean
-
 clean:
 	@$(RM) $(OBJS)
 
 clear:
-	@$(RM) src/*/*~ include/*~
+	@$(RM) */*~ include/*~
 
 fclean: clean clear
 	@$(RM) $(NAME)

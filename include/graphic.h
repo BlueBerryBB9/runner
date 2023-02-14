@@ -16,8 +16,17 @@
 
 typedef t_bunny_accurate_position t_accurate_pos;
 
+void draw_level_end(t_bunny_pixelarray *px,
+                    t_bunny_window *win,
+                    int time);
+
 #include "labyrinth_solver.h"
 #include "character.h"
+
+unsigned int mk_colour(unsigned char r,
+                       unsigned char g,
+                       unsigned char b,
+                       unsigned char a);
 
 void clear_pixelarray(t_bunny_pixelarray *pxa, unsigned int color);
 
