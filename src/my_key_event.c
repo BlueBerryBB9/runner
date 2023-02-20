@@ -13,12 +13,13 @@ t_bunny_response my_key_event(t_bunny_event_state state,
                               void *data)
 {
     struct display *ds;
-    t_accurate_pos old;
+    t_accurate_pos send_pos;
     t_bunny_position new_pos;
+    t_bunny_position new_send_pos;
 
     ds = data;
-    old = ds->pos;
-    printf("keycode: %d\n state %d\n posy %f\n", keycode, state, ds->pos.y);
+    send_pos = ds->pos;
+    //printf("keycode: %d\n state %d\nposy %f\nposx %f\n", keycode, state, ds->pos.y, ds->pos.x);
     if (state == GO_UP){
         return (GO_ON);
     }
@@ -35,12 +36,18 @@ t_bunny_response my_key_event(t_bunny_event_state state,
     if (ds->map.map[(ds->map.width
                      * ((int) ds->pos.y / ds->map.tile_size))
                     + ((int) ds->pos.x / ds->map.tile_size)] == 1) {
-        ds->pos.x = old.x;
-        ds->pos.y = old.y;
+        ds->pos.x = send_pos.x;
+        ds->pos.y = send_pos.y;
     }
     new_pos = pos_from_accurate(&ds->pos);
     refresh_map(&ds->map, ds->px);
-    draw_pacman(ds->px, new_pos, ds->direction, 20);
+    draw_pacman(ds->px, new_pos, 0, 20);
+    div_or_mult_pos(&ds->pos, ds->map.tile_size, '/');
+    send_pos = send_ray(&ds->map, &ds->pos, ds->direction);
+    div_or_mult_pos(&ds->pos, ds->map.tile_size, '*');
+    div_or_mult_pos(&send_pos, ds->map.tile_size, '*');
+    new_send_pos = pos_from_accurate(&send_pos);
+    stu_draw_line(ds->px, &new_pos, &new_send_pos, GREEN);
     refresh(ds->win, ds->px);
     return (GO_ON);
 }

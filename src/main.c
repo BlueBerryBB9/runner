@@ -36,7 +36,7 @@ int main(void)
     init_s_map(&ds.map);
     ds.pos.x     = 1.5 * ds.map.tile_size;
     ds.pos.y     = 1.5 * ds.map.tile_size;
-    ds.direction = 1.5 * M_PI;
+    ds.direction = 0.5 * M_PI;
     ds.win       = bunny_start(ds.map.width * ds.map.tile_size,
                                ds.map.height * ds.map.tile_size,
                                false,
