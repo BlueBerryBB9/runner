@@ -13,12 +13,11 @@ t_bunny_response my_key_event(t_bunny_event_state state,
                               void *data)
 {
     struct display *ds;
-    t_bunny_position npos;
-    t_bunny_position old;
+    t_accurate_pos old;
+    t_bunny_position new_pos;
 
     ds = data;
-    npos = pos_from_accurate(&ds->pos);
-    old = npos;
+    old = ds->pos;
     printf("keycode: %d\n state %d\n posy %f\n", keycode, state, ds->pos.y);
     if (state == GO_UP){
         return (GO_ON);
@@ -26,38 +25,22 @@ t_bunny_response my_key_event(t_bunny_event_state state,
     if (keycode == BKS_ESCAPE){
         return (EXIT_ON_SUCCESS);
     }
-        if (keycode == BKS_UP) {
-        ds->pos.y -= 50;
-    } else if (keycode == BKS_LEFT) {
-        ds->pos.x -= 50;
-    } else if (keycode == BKS_RIGHT) {
-        ds->pos.x += 50;
-    } else if (keycode == BKS_DOWN) {
-        ds->pos.y += 50;
-    } else if (keycode == BKS_Z) {
-        ds->pos.y -= 10;
-    } else if (keycode == BKS_Q) {
-        ds->pos.x -= 10;
-    } else if (keycode == BKS_S) {
-        ds->pos.y += 10;
-    } else if (keycode == BKS_D) {
-        ds->pos.x += 10;
-    }
-    npos = pos_from_accurate(&ds->pos);
+    make_keys(keycode, ds);
     if (ds->map.map[(ds->map.width
-                     * ((int) npos.y / ds->map.tile_size))
-                    + ((int) npos.x/ ds->map.tile_size)] == 2) {
+                     * ((int) ds->pos.y / ds->map.tile_size))
+                    + ((int) ds->pos.x / ds->map.tile_size)] == 2) {
         draw_level_end(ds->map, ds->px, ds->win, 3);
         return 2;
     }
     if (ds->map.map[(ds->map.width
-                     * ((int) npos.y / ds->map.tile_size))
-                    + ((int) npos.x/ ds->map.tile_size)] == 1) {
-        npos.x = old.x;
-        npos.y = old.y;
+                     * ((int) ds->pos.y / ds->map.tile_size))
+                    + ((int) ds->pos.x / ds->map.tile_size)] == 1) {
+        ds->pos.x = old.x;
+        ds->pos.y = old.y;
     }
+    new_pos = pos_from_accurate(&ds->pos);
     refresh_map(&ds->map, ds->px);
-    draw_pacman(ds->px, npos, 0, 20);
+    draw_pacman(ds->px, new_pos, ds->direction, 20);
     refresh(ds->win, ds->px);
     return (GO_ON);
 }

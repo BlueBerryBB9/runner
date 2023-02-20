@@ -86,9 +86,9 @@ static void mk_mouth(t_bunny_pixelarray *px,
 }
 
 void draw_pacman(t_bunny_pixelarray *px,
-                   t_bunny_position pos,
-                   double direction,
-                   int radius)
+                 t_bunny_position pos,
+                 double direction,
+                 int radius)
 {
     mk_body(px, pos, radius);
     mk_mouth(px, pos, direction, radius);

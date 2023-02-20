@@ -33,6 +33,9 @@ t_bunny_response my_key_event(t_bunny_event_state state,
                               t_bunny_keysym keycode,
                               void *data);
 
+void make_keys(t_bunny_keysym keycode,
+               struct display *ds);
+
 void clear_pixelarray(t_bunny_pixelarray *pxa, unsigned int color);
 
 void stu_set_circle(t_bunny_pixelarray *pxa,

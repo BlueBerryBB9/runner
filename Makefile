@@ -3,7 +3,6 @@
 # created on:  2023-01-20 - 10:17 +0100
 # 1st author:  martin.leroy - martin.leroy
 # description: makefile
-	#git add Makefile */*.c */*/*.c include/*.h
 
 NAME	=	runner
 
@@ -34,7 +33,7 @@ $(NAME): $(OBJS)
 
 save:
 	git status
-	git add *
+	git add Makefile */*.c */*/*.c include/*.h
 	git commit -m "$(NAME) Sauvegarde"
 	git push
 	git status

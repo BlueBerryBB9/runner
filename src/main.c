@@ -34,12 +34,13 @@ int main(void)
 {
     struct display ds;
     init_s_map(&ds.map);
-    ds.pos.x         = 1.5;
-    ds.pos.y         = 1.5;
-    ds.win           = bunny_start(ds.map.width * ds.map.tile_size,
-                                ds.map.height * ds.map.tile_size,
-                                false,
-                                "fl: TP Runner");
+    ds.pos.x     = 1.5 * ds.map.tile_size;
+    ds.pos.y     = 1.5 * ds.map.tile_size;
+    ds.direction = 1.5 * M_PI;
+    ds.win       = bunny_start(ds.map.width * ds.map.tile_size,
+                               ds.map.height * ds.map.tile_size,
+                               false,
+                               "fl: TP Runner");
     ds.px = bunny_new_pixelarray(ds.win->buffer.width, ds.win->buffer.height);
     clear_pixelarray(ds.px, BLACK);
     draw_map(&ds.map, ds.px);
