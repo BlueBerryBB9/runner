@@ -32,15 +32,15 @@ int labyrinth_solve(struct map *map,
         div_or_mult_pos(&pos, map->tile_size, '*');
         bpos = pos_from_accurate(&pos);
         div_or_mult_pos(&pos, map->tile_size, '/');
-        clear_pixelarray(px, BLACK);
-        draw_map(map, px);
+        refresh_map(map, px);
         draw_pacman(px, bpos, direction, map->tile_size / 4);
         if (moving(map, &pos, &direction) == 2) {
+            draw_level_end(*map, px, win, 3);
             return 2;
         }
         fix_angle(&angle, direction);
         refresh(win, px);
-        bunny_usleep(1e4);
+        bunny_usleep(1e3);
     }
     return 0;
 }

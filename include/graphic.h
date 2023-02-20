@@ -9,6 +9,7 @@
 #include <lapin.h>
 #include <math.h>
 #include "map.h"
+#include "display.h"
 #include "labyrinth_solver.h"
 #include "character.h"
 
@@ -27,6 +28,10 @@ unsigned int mk_colour(unsigned char r,
                        unsigned char g,
                        unsigned char b,
                        unsigned char a);
+
+t_bunny_response my_key_event(t_bunny_event_state state,
+                              t_bunny_keysym keycode,
+                              void *data);
 
 void clear_pixelarray(t_bunny_pixelarray *pxa, unsigned int color);
 
@@ -58,6 +63,8 @@ int radar(struct map *map,
           double angle);
 
 void refresh(t_bunny_window *win, t_bunny_pixelarray *px);
+
+void refresh_map(struct map *map, t_bunny_pixelarray *px);
 
 void draw_map(struct map *map, t_bunny_pixelarray *px);
 

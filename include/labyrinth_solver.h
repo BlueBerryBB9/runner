@@ -23,6 +23,11 @@ int change_dir(struct map *map,
 
 int check_nb(int nb, double *dir);
 
+void draw_level_end(struct map map,
+                    t_bunny_pixelarray *px,
+                    t_bunny_window *win,
+                    int time);
+
 t_bunny_position give_t_pos(t_accurate_pos *pos, double angle);
 
 int labyrinth_solve(struct map *map,
@@ -49,5 +54,7 @@ void draw_map(struct map *map, t_bunny_pixelarray *px);
 void draw_map(struct map *map, t_bunny_pixelarray *px);
 
 void refresh(t_bunny_window *win, t_bunny_pixelarray *px);
+
+void refresh_map(struct map *map, t_bunny_pixelarray *px);
 
 #endif
