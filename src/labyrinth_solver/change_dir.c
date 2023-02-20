@@ -13,26 +13,18 @@ int change_dir(struct map *map,
                  double *dir)
 {
     int nb;
-    t_bunny_position n;
-    t_bunny_position s;
-    t_bunny_position e;
-    t_bunny_position o;
 
     nb = 0;
-    n = give_t_pos(pos, 1.5 * M_PI);
-    s = give_t_pos(pos, 0.5 * M_PI);
-    e = give_t_pos(pos, 0);
-    o = give_t_pos(pos, M_PI);
-    if (map->map[(map->width * n.y) + n.x] == 1) {
+    if (map->map[(map->width * ((int) pos->y - 1)) + (int) pos->x] == 1) {
         nb += 1000;
     }
-    if (map->map[(map->width * s.y) + s.x] == 1) {
+    if (map->map[(map->width * ((int) pos->y + 1)) + (int) pos->x] == 1) {
         nb += 100;
     }
-    if (map->map[(map->width * e.y) + e.x] == 1) {
+    if (map->map[(map->width * (int) pos->y) + ((int) pos->x + 1)] == 1) {
         nb += 10;
     }
-    if (map->map[(map->width * o.y) + o.x] == 1) {
+    if (map->map[(map->width * (int) pos->y) + ((int) pos->x - 1)] == 1) {
         nb += 1;
     }
     check_nb(nb, dir);

@@ -8,7 +8,7 @@
 
 #include "labyrinth_solver.h"
 
-t_bunny_position give_t_pos(t_accurate_pos *pos, double angle)
+t_bunny_position give_acc_pos(t_accurate_pos *pos, double angle)
 {
     t_bunny_position n;
     t_accurate_pos N;

@@ -28,19 +28,19 @@ int labyrinth_solve(struct map *map,
     double direction;
     t_bunny_position bpos;
 
-    direction = 2 * M_PI;
+    direction = 0;
     while (direction != 1) {
-        div_or_mult_pos(&pos, map->tile_size, '*');
-        bpos = pos_from_accurate(&pos);
-        div_or_mult_pos(&pos, map->tile_size, '/');
         refresh_map(map, px);
         if (moving(map, &pos, &direction) == 2) {
             //draw_level_end(*map, px, win, 3);
             return 2;
         }
+        div_or_mult_pos(&pos, map->tile_size, '*');
+        bpos = pos_from_accurate(&pos);
+        div_or_mult_pos(&pos, map->tile_size, '/');
         draw_pacman(px, bpos, direction, map->tile_size / 4);
         refresh(win, px);
-        bunny_usleep(1e3);
+        //bunny_usleep(1e3);
     }
     return 0;
 }

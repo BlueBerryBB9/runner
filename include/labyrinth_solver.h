@@ -28,7 +28,7 @@ void draw_level_end(struct map map,
                     t_bunny_window *win,
                     int time);
 
-t_bunny_position give_t_pos(t_accurate_pos *pos, double angle);
+t_bunny_position give_acc_pos(t_accurate_pos *pos, double angle);
 
 int labyrinth_solve(struct map *map,
                     t_accurate_pos pos,
