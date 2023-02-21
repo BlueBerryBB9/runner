@@ -31,14 +31,6 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 
-save:
-	git status
-	make fclean
-	git add *
-	git commit -m "$(NAME) Sauvegarde"
-	git push
-	git status
-
 clean:
 	@$(RM) $(OBJS)
 
@@ -47,6 +39,13 @@ clear:
 
 fclean: clean clear
 	@$(RM) $(NAME)
+
+save: 	fclean
+	git status
+	git add *
+	git commit -m "$(NAME) Sauvegarde"
+	git push
+	git status
 
 re: fclean all
 
