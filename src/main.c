@@ -40,13 +40,22 @@ int main(void)
     ds.win       = bunny_start(ds.map.width * ds.map.tile_size,
                                ds.map.height * ds.map.tile_size,
                                false,
-                               "fl: TP Runner");
-    ds.px = bunny_new_pixelarray(ds.win->buffer.width, ds.win->buffer.height);
+                               "fl: TP Runner - Map");
+    ds.px        = bunny_new_pixelarray(ds.win->buffer.width,
+                                        ds.win->buffer.height);
+    /*
+     * ds.win_fp    = bunny_start(ds.map.width * ds.map.tile_size,
+     *                            ds.map.height * ds.map.tile_size,
+     *                            false,
+     *                            "fl: TP Runner - First_person");
+     * ds.px_fp     = bunny_new_pixelarray(ds.win->buffer.width,
+     *                                     ds.win->buffer.height);
+     */
     clear_pixelarray(ds.px, BLACK);
     draw_map(&ds.map, ds.px);
     refresh(ds.win, ds.px);
     bunny_set_key_response(my_key_event);
-    bunny_loop(ds.win, 60, &ds);
+    bunny_loop(ds.win, 30, &ds);
     bunny_delete_clipable(&ds.px->clipable);
     bunny_stop(ds.win);
     return (0);
