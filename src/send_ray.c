@@ -40,6 +40,10 @@ static t_accurate_pos rev_send_ray(struct map *map,
 
 static void choose_step_size(int *step, int tile_size)
 {
+    double tile;
+    double sp;
+
+    tile = (double) tile_size;
     if (tile_size < 20 && tile_size >= 3) {
         *step = 2;
         return;
@@ -47,7 +51,7 @@ static void choose_step_size(int *step, int tile_size)
         *step = 1;
         return;
     } else {
-        *step = tile_size / 10;
+        *step / 10;
         return;
     }
     return;

@@ -39,7 +39,6 @@ t_bunny_response my_key_event(t_bunny_event_state state,
         ds->pos.y = send_pos.y;
     }
     refresh_map(&ds->map, ds->px);
-    //draw_map(&ds->map, ds->px);
     //draw_pacman(ds->px, ds->pos, ds->direction, 20);
     bpos = pos_from_accurate(&ds->pos);
     put_pixel(ds->px, &bpos, RED);
