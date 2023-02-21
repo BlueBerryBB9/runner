@@ -32,13 +32,13 @@ static void mk_mouth(t_bunny_pixelarray *px,
     t_bunny_position bupos;
     double dir;
 
-    dir = -1 *(M_PI / 10);
+    dir = -1 *(M_PI / 8);
     bupos = pos_from_accurate(&pos);
-    while (dir <= M_PI / 10) {
+    while (dir <= M_PI / 8) {
         apos = move_forward(&pos, direction + dir, radius + 1);
         bpos = pos_from_accurate(&apos);
         stu_draw_line(px, &bupos, &bpos, BLACK);
-        dir += M_PI / 180;
+        dir += M_PI / 90;
     }
 }
 

@@ -14,6 +14,7 @@ t_bunny_response my_key_event(t_bunny_event_state state,
 {
     struct display *ds;
     t_accurate_pos send_pos;
+    t_bunny_position bpos;
 
     ds = data;
     send_pos = ds->pos;
@@ -39,7 +40,9 @@ t_bunny_response my_key_event(t_bunny_event_state state,
     }
     refresh_map(&ds->map, ds->px);
     //draw_map(&ds->map, ds->px);
-    draw_pacman(ds->px, ds->pos, ds->direction, 20);
+    //draw_pacman(ds->px, ds->pos, ds->direction, 20);
+    bpos = pos_from_accurate(&ds->pos);
+    put_pixel(ds->px, &bpos, RED);
     refresh(ds->win, ds->px);
     return (GO_ON);
 }

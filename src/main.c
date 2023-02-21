@@ -47,11 +47,6 @@ int main(void)
     refresh(ds.win, ds.px);
     bunny_set_key_response(my_key_event);
     bunny_loop(ds.win, 60, &ds);
-    /*
-     * ds.pos.x     = 1.5;
-     * ds.pos.y     = 1.5;
-     * labyrinth_solve(&ds.map, ds.pos, ds.win, ds.px);
-     */
     bunny_delete_clipable(&ds.px->clipable);
     bunny_stop(ds.win);
     return (0);
