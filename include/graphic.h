@@ -19,7 +19,7 @@
 
 typedef t_bunny_accurate_position t_accurate_pos;
 
-int first_person(struct display *ds);
+int first_person(struct display *ds, int fov);
 
 void draw_background(struct display *ds);
 

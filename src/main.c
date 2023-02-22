@@ -68,7 +68,7 @@ int main(void)
                                   ds.win->buffer.height);
     clear_pixelarray(ds.px, BLACK);
     draw_map(&ds.map, ds.px);
-    draw_background(&ds, 70);
+    draw_background(&ds);
     refresh(ds.win, ds.px);
     refresh(ds.win_fp, ds.px_fp);
     bunny_set_key_response(my_key_event);
