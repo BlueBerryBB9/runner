@@ -8,11 +8,19 @@
 
 #include "graphic.h"
 
-/*
- * int first_person(struct display *data)
- * {
- *     struct display ds;
- * 
- *     ds = *data;
- * }
- */
+static void draw_wall(struct display *ds, int fov)
+{
+    double dir;
+
+    dir = -1 * deg_to_rads(fov);
+    while (ds->direction + dir != ds->direction + deg_to_rads(fov)) {
+
+    }
+}
+
+int first_person(struct display *ds, int fov)
+{
+    draw_background(ds);
+    draw_wall(ds, fov);
+    return 0;
+}

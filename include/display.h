@@ -23,6 +23,10 @@ struct display {
     t_bunny_window *win_fp;
     t_bunny_pixelarray *px_fp;
 
+    int col_up;
+    int col_bottom;
+    int col_wall;
+
     t_accurate_pos pos;
     struct map map;
 

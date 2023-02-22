@@ -53,8 +53,9 @@ t_bunny_response my_key_event(t_bunny_event_state state,
     if (if_end(ds) == 1) {
         return (EXIT_ON_SUCCESS);
     }
-    //first_person(ds);
+    first_person(ds);
     refresh_map(&ds->map, ds->px);
+    refresh(ds->win_fp, ds->px_fp);
     //draw_pacman(ds->px, ds->pos, ds->direction, 12);
     bpos = pos_from_accurate(&ds->pos);
     put_pixel(ds->px, &bpos, RED);

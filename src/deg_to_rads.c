@@ -12,6 +12,6 @@ double deg_to_rads(int degrees)
 {
     double x;
 
-    x = ((double)degrees * (2 * M_PI)) / 360;
+    x = ((double) degrees * (2 * M_PI)) / 360;
     return (x);
 }
