@@ -21,7 +21,6 @@ static void draw_wall(struct display *ds, int fov)
         div_or_mult_pos(&ds->pos, ds->map.tile_size, '*');
         div_or_mult_pos(&acc_pos, ds->map.tile_size, '*');
         pos = pos_from_accurate(&acc_pos);
-        printf("here");
         put_pixel(ds->px_fp, &pos, RED);
         dir += deg_to_rads((fov * 2)) / 45;
     }
