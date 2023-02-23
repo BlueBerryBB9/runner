@@ -92,6 +92,11 @@ t_accurate_pos send_ray(struct map *map,
                         const t_accurate_pos *start,
                         double angle);
 
+t_accurate_pos send_ray_draw_wall(struct map *map,
+                                  const t_accurate_pos *start,
+                                  double angle,
+                                  struct display *ds);
+
 float get_ratio(int a, int b, int x);
 
 int get_value(int a, int b, float ratio);
