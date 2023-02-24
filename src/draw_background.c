@@ -8,20 +8,20 @@
 
 #include "graphic.h"
 
-void draw_background(struct display *ds)
+void draw_background(struct display *ds, t_bunny_pixelarray *px)
 {
     int i;
     unsigned int *tableau;
 
     i = 0;
-    tableau = (unsigned int *)ds->px_fp->pixels;
-    while (i <= (ds->px_fp->clipable.clip_width
-                 * ds->px_fp->clipable.clip_height) / 2) {
+    tableau = (unsigned int *)px->pixels;
+    while (i <= (px->clipable.clip_width
+                 * px->clipable.clip_height) / 2) {
         tableau[i] = ds->col_up;
         i = i + 1;
     }
-    while (i <= (ds->px_fp->clipable.clip_width
-                 * ds->px_fp->clipable.clip_height)) {
+    while (i <= (px->clipable.clip_width
+                 * px->clipable.clip_height)) {
         tableau[i] = ds->col_bottom;
         i = i + 1;
     }

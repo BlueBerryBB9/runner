@@ -9,12 +9,19 @@
 #include "graphic.h"
 
 /*
+ * static void clear_column(struct display *ds, int height)
+ * {
+ *     
+ * }
+ */
+
+/*
  * static void draw_column(struct display *ds, int height, int column)
  * {
  *     if (height > ds->win_fp->buffer.height) {
  *         height = ds->win_fp->buffer.height;
  *     }
- *     clear_column(height);
+ *     clear_column(ds, height);
  * }
  */
 
@@ -28,9 +35,9 @@ static int draw_wall(struct display *ds, int fov)
     int column_nb;
 
     column_nb = 0;
-    dir = -1 * deg_to_rads(fov);
+    dir = -1 * deg_to_rads(fov / 2);
     pos = pos_from_accurate(&ds->pos);
-    while (ds->direction + dir <= ds->direction + deg_to_rads(fov)) {
+    while (ds->direction + dir <= ds->direction + deg_to_rads(fov / 2)) {
         acc_pos = send_ray_draw_wall(&ds->map,
                                      &ds->pos,
                                      ds->direction + dir,
@@ -42,6 +49,7 @@ static int draw_wall(struct display *ds, int fov)
         dir += deg_to_rads((fov * 2)) / 90;
         column_nb += 1;
     }
+    printf("%d\n", height);
     return height;
 }
 

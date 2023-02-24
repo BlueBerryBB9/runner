@@ -21,7 +21,7 @@ typedef t_bunny_accurate_position t_accurate_pos;
 
 int first_person(struct display *ds, int fov);
 
-void draw_background(struct display *ds);
+void draw_background(struct display *ds, t_bunny_pixelarray *px);
 
 void draw_level_end(struct map map,
                     t_bunny_pixelarray *px,
