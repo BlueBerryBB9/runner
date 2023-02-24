@@ -46,6 +46,7 @@ static void init_labyrinth_info(struct display *ds)
     ds->pos.x     = 1.5 * ds->map.tile_size;
     ds->pos.y     = 1.5 * ds->map.tile_size;
     ds->direction = 0.5 * M_PI;
+    ds->count     = 0;
 }
 
 static void stop_window(t_bunny_pixelarray *px, t_bunny_window *win)

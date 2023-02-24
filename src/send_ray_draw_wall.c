@@ -32,7 +32,7 @@ static t_accurate_pos rev_send_ray_draw_wall(struct map *map,
         pos = move_forward(&pos, angle, step);
         div_or_mult_pos(&pos, map->tile_size, '/');
         post = pos_from_accurate(&pos);
-        ds->count += step;
+        ds->count -= step;
         if (map->map[(map->width * post.y) + post.x] == 0) {
             return pos;
         }
@@ -49,6 +49,7 @@ t_accurate_pos send_ray_draw_wall(struct map *map,
     t_accurate_pos pos;
     t_bunny_position post;
 
+    ds->count = 0;
     step = 10;
     pos.x = start->x;
     pos.y = start->y;

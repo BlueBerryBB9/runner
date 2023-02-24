@@ -8,6 +8,13 @@
 
 #include "graphic.h"
 
+static void found_height(t_accurate_pos *acc_pos)
+{
+    if (!acc_pos)
+        return;
+    return;
+}
+
 static void draw_wall(struct display *ds, int fov)
 {
     double dir;
@@ -17,9 +24,11 @@ static void draw_wall(struct display *ds, int fov)
     dir = -1 * deg_to_rads(fov);
     while (ds->direction + dir <= ds->direction + deg_to_rads(fov)) {
         div_or_mult_pos(&ds->pos, ds->map.tile_size, '/');
-        acc_pos = send_ray(&ds->map, &ds->pos, ds->direction);
+        acc_pos = send_ray_draw_wall(&ds->map, &ds->pos, ds->direction, ds);
+        printf("count = %d\n", ds->count);
         div_or_mult_pos(&ds->pos, ds->map.tile_size, '*');
         div_or_mult_pos(&acc_pos, ds->map.tile_size, '*');
+        found_height(&acc_pos);
         pos = pos_from_accurate(&acc_pos);
         put_pixel(ds->px_fp, &pos, RED);
         dir += deg_to_rads((fov * 2)) / 45;
