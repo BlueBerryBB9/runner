@@ -26,10 +26,10 @@ ifdef DEBUG
 CFLAGS += -g
 endif
 
-all: $(NAME)
+all:	$(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
+$(NAME):	$(OBJS)
+		$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 
 clean:
 	@$(RM) $(OBJS)
