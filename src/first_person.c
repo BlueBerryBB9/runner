@@ -9,39 +9,41 @@
 #include "graphic.h"
 
 /*
- * static void found_height(t_accurate_pos *acc_pos)
+ * static void draw_column(struct display *ds, int height, int column)
  * {
- *     if (!acc_pos)
- *         return;
- *     return;
+ *     if (height > ds->win_fp->buffer.height) {
+ *         height = ds->win_fp->buffer.height;
+ *     }
+ *     clear_column(height);
  * }
  */
 
-static void draw_wall(struct display *ds, int fov)
+static int draw_wall(struct display *ds, int fov)
 {
     double dir;
     t_bunny_position send_pos;
     t_bunny_position pos;
     t_accurate_pos acc_pos;
+    int height;
+    int column_nb;
 
+    column_nb = 0;
     dir = -1 * deg_to_rads(fov);
     pos = pos_from_accurate(&ds->pos);
     while (ds->direction + dir <= ds->direction + deg_to_rads(fov)) {
-        //div_or_mult_pos(&ds->pos, ds->map.tile_size, '/');
         acc_pos = send_ray_draw_wall(&ds->map,
                                      &ds->pos,
                                      ds->direction + dir,
                                      ds);
-        //printf("x %f\ny %f\n", acc_pos.x, acc_pos.y);
-        //div_or_mult_pos(&ds->pos, ds->map.tile_size, '*');
-        //div_or_mult_pos(&acc_pos, ds->map.tile_size, '*');
-        //found_height(&acc_pos);
+        height = (ds->win_fp->buffer.height * ds->map.tile_size) / ds->count;
+        //draw_column(ds, height, column_nb);
         send_pos = pos_from_accurate(&acc_pos);
         stu_draw_line(ds->px, &pos, &send_pos, WHITE);
         dir += deg_to_rads((fov * 2)) / 90;
+        column_nb += 1;
     }
+    return height;
 }
-
 
 int first_person(struct display *ds, int fov)
 {
