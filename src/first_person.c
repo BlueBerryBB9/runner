@@ -32,13 +32,13 @@ static void draw_wall(struct display *ds, int fov)
                                      &ds->pos,
                                      ds->direction + dir,
                                      ds);
-        printf("x %f\ny %f\n", acc_pos.x, acc_pos.y);
+        //printf("x %f\ny %f\n", acc_pos.x, acc_pos.y);
         //div_or_mult_pos(&ds->pos, ds->map.tile_size, '*');
         //div_or_mult_pos(&acc_pos, ds->map.tile_size, '*');
         //found_height(&acc_pos);
         send_pos = pos_from_accurate(&acc_pos);
-        stu_draw_line(ds->px, &pos, &send_pos, RED);
-        dir += deg_to_rads((fov * 2)) / 45;
+        stu_draw_line(ds->px, &pos, &send_pos, WHITE);
+        dir += deg_to_rads((fov * 2)) / 90;
     }
 }
 
