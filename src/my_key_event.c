@@ -18,14 +18,16 @@ static void wall_collision(struct map *map,
                            t_accurate_pos *pos,
                            t_accurate_pos send_pos)
 {
-    if (pos->x / map->tile_size < map->width
-        && pos->y / map->tile_size < map->height
-        && pos->x / map->tile_size > 0
-        && pos->y / map->tile_size > 0) {
-        pos->x = send_pos.x;
-        pos->y = send_pos.y;
-        return;
-    }
+    /*
+     * if (pos->x / map->tile_size < map->width
+     *     && pos->y / map->tile_size < map->height
+     *     && pos->x / map->tile_size > 0
+     *     && pos->y / map->tile_size > 0) {
+     *     pos->x = send_pos.x;
+     *     pos->y = send_pos.y;
+     *     return;
+     * }
+     */
     if (map->map[(map->width
                      * ((int) pos->y / map->tile_size))
                     + ((int) pos->x / map->tile_size)] == 1) {
@@ -70,7 +72,7 @@ t_bunny_response my_key_event(t_bunny_event_state state,
         return (EXIT_ON_SUCCESS);
     }
     refresh_map(&ds->map, ds->px);
-    first_person(ds, 110);
+    first_person(ds, 70);
     refresh(ds->win_fp, ds->px_fp);
     //draw_pacman(ds->px, ds->pos, ds->direction, ds->map.tile_size / 5);
     bpos = pos_from_accurate(&ds->pos);
