@@ -11,7 +11,7 @@
 static t_accurate_pos rev_send_ray_draw_wall(struct map *map,
                                    t_accurate_pos *start,
                                    double angle,
-                                   int step,
+                                   double step,
                                    struct display *ds)
 {
     t_accurate_pos pos;
@@ -19,9 +19,7 @@ static t_accurate_pos rev_send_ray_draw_wall(struct map *map,
 
     pos.x = start->x;
     pos.y = start->y;
-    //div_or_mult_pos(&pos, map->tile_size, '*');
     pos = move_forward(&pos, angle, step);
-    //div_or_mult_pos(&pos, map->tile_size, '/');
     post = pos_from_accurate(&pos);
     if (map->map[(map->width * (post.y / map->tile_size))
                  + (post.x / map->tile_size)] == 0) {
@@ -31,13 +29,13 @@ static t_accurate_pos rev_send_ray_draw_wall(struct map *map,
            && pos.y / map->tile_size < map->height
            && pos.x / map->tile_size > 0
            && pos.y / map->tile_size > 0) {
-        //div_or_mult_pos(&pos, map->tile_size, '*');
         pos = move_forward(&pos, angle, step);
-        //div_or_mult_pos(&pos, map->tile_size, '/');
         post = pos_from_accurate(&pos);
         ds->count -= step;
         if (map->map[(map->width * (post.y / map->tile_size))
-                     + (post.x / map->tile_size)] == 0) {
+                     + (post.x / map->tile_size)] == 0
+            || map->map[(map->width * (post.y / map->tile_size))
+                     + (post.x / map->tile_size)] == 2) {
             return pos;
         }
     }
@@ -49,7 +47,7 @@ t_accurate_pos send_ray_draw_wall(struct map *map,
                         double angle,
                         struct display *ds)
 {
-    int step;
+    double step;
     t_accurate_pos pos;
     t_bunny_position post;
 
@@ -67,7 +65,7 @@ t_accurate_pos send_ray_draw_wall(struct map *map,
         if (map->map[(map->width * (post.y / map->tile_size))
                      + (post.x / map->tile_size)] == 1) {
             angle += M_PI;
-            step = 1;
+            step = 0.35;
             pos = rev_send_ray_draw_wall(map, &pos, angle, step, ds);
             return pos;
         }

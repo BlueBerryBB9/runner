@@ -32,7 +32,7 @@ struct display {
 
     double direction;
     double step;
-    unsigned int count;
+    double count;
 
 };
 

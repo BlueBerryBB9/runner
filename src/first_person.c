@@ -8,47 +8,50 @@
 
 #include "graphic.h"
 
-/*
- * static void clear_column(struct display *ds, int height)
- * {
- *     
- * }
- * 
- * static void draw_column(struct display *ds, int height, int column)
- * {
- *     if (height > ds->win_fp->buffer.height) {
- *         height = ds->win_fp->buffer.height;
- *     }
- *     clear_column(ds, height);
- * }
- */
+static void clear_column(struct display *ds, int height, int column)
+{
+    t_bunny_position pos;
+    t_bunny_position bpos;
+
+    pos.x = column * (ds->win_fp->buffer.width / 135);
+    pos.y = ((ds->win_fp->buffer.height - height) / 2);
+    bpos.x = pos.x;
+    bpos.y = ds->win_fp->buffer.height -
+        ((ds->win_fp->buffer.height - height) / 2);
+    while (pos.x != (column + 1) * (ds->win_fp->buffer.width / 135)) {
+        stu_draw_line(ds->px_fp, &pos, &bpos, WHITE);
+        pos.x += 1;
+        bpos.x = pos.x;
+    }
+}
+
+static void draw_column(struct display *ds, int height, int column)
+{
+    if (height > ds->win_fp->buffer.height) {
+        height = ds->win_fp->buffer.height;
+    }
+    clear_column(ds, height, column);
+}
 
 static int draw_wall(struct display *ds, int fov)
 {
     double dir;
-    t_bunny_position send_pos;
-    t_bunny_position pos;
-    t_accurate_pos acc_pos;
     int height;
     int column;
 
     column = 0;
     dir = -1 * deg_to_rads(fov / 2);
-    pos = pos_from_accurate(&ds->pos);
     while (ds->direction + dir <= ds->direction + deg_to_rads(fov / 2)
-           && column != 46) {
-        acc_pos = send_ray_draw_wall(&ds->map,
-                                     &ds->pos,
-                                     ds->direction + dir,
-                                     ds);
+           || column != 136) {
+        send_ray_draw_wall(&ds->map,
+                           &ds->pos,
+                           ds->direction + dir,
+                           ds);
         height = (ds->win_fp->buffer.height * ds->map.tile_size) / ds->count;
-        //draw_column(ds, height, column);
-        send_pos = pos_from_accurate(&acc_pos);
-        stu_draw_line(ds->px, &pos, &send_pos, WHITE);
-        dir += deg_to_rads((fov)) / 45;
+        draw_column(ds, height, column);
+        dir += deg_to_rads((fov)) / 135;
         column += 1;
     }
-    printf("%d\n", column);
     return height;
 }
 
