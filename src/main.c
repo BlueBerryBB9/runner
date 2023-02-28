@@ -10,8 +10,8 @@
 
 int mx[19 * 10] = {
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1,
-    0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1,
+    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1,
+    1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1,
     1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1,
     1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1,
     1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1,
@@ -35,7 +35,7 @@ static void init_first_person_window(struct display *ds)
     ds->col_wall   = mk_colour(128, 128, 128, 255);
     ds->col_bottom = mk_colour(57, 255, 20, 255);
     ds->win_fp     = bunny_start(800,
-                                 700,
+                                 600,
                                  false,
                                  "fl: TP Runner - First_person");
     ds->px_fp      = bunny_new_pixelarray(ds->win_fp->buffer.width,
@@ -75,6 +75,6 @@ int main(void)
     refresh(ds.win_fp, ds.px_fp);
     bunny_set_key_response(my_key_event);
     bunny_loop(ds.win, 60, &ds);
-    stop_window(ds.px, ds.win);
+    stop_window(ds.px_fp, ds.win_fp);
     return (0);
 }

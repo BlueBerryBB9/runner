@@ -18,19 +18,17 @@ static void wall_collision(struct map *map,
                            t_accurate_pos *pos,
                            t_accurate_pos send_pos)
 {
-    /*
-     * if (pos->x / map->tile_size < map->width
-     *     && pos->y / map->tile_size < map->height
-     *     && pos->x / map->tile_size > 0
-     *     && pos->y / map->tile_size > 0) {
-     *     pos->x = send_pos.x;
-     *     pos->y = send_pos.y;
-     *     return;
-     * }
-     */
+    if (((int) pos->x / map->tile_size) > map->width
+        && ((int) pos->y / map->tile_size) > map->height
+        && ((int) pos->x / map->tile_size) < 0
+        && ((int) pos->y / map->tile_size) < 0) {
+        pos->x = send_pos.x;
+        pos->y = send_pos.y;
+        return;
+    }
     if (map->map[(map->width
-                     * ((int) pos->y / map->tile_size))
-                    + ((int) pos->x / map->tile_size)] == 1) {
+                  * ((int) pos->y / map->tile_size))
+                 + ((int) pos->x / map->tile_size)] == 1) {
         pos->x = send_pos.x;
         pos->y = send_pos.y;
         return;
@@ -44,6 +42,7 @@ static int if_end(struct display *ds)
                     + ((int) ds->pos.x / ds->map.tile_size)] == 2) {
         stop_window(ds->px_fp, ds->win_fp);
         draw_level_end(ds->map, ds->px, ds->win, 3);
+        stop_window(ds->px, ds->win);
         return 1;
     }
     return 0;

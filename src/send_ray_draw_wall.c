@@ -52,7 +52,7 @@ t_accurate_pos send_ray_draw_wall(struct map *map,
     t_bunny_position post;
 
     ds->count = 0;
-    step = 2;
+    step = 3;
     pos.x = start->x;
     pos.y = start->y;
     while (pos.x < map->width * map->tile_size

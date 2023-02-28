@@ -8,7 +8,7 @@
 
 #include "graphic.h"
 
-static void draw_map_wall_color(struct map *map,
+static void draw_end_color(struct map *map,
                                 t_bunny_pixelarray *px,
                                 int color)
 {
@@ -36,7 +36,7 @@ void draw_level_end(struct map map,
                     t_bunny_window *win,
                     int time)
 {
-    int mxx[19 * 12] = {
+    int mxx[19 * 10] = {
         1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1,
         1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1,
         1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1,
@@ -56,10 +56,10 @@ void draw_level_end(struct map map,
     while (time != 0) {
         if (time % 2 == 0) {
             clear_pixelarray(px, mk_colour(255, 215, 0, 1));
-            draw_map_wall_color(&nmap, px, WHITE);
+            draw_end_color(&nmap, px, WHITE);
         } else {
             clear_pixelarray(px, WHITE);
-            draw_map_wall_color(&nmap, px, mk_colour(255, 215, 0, 1));
+            draw_end_color(&nmap, px, mk_colour(255, 215, 0, 1));
         }
         refresh(win, px);
         bunny_usleep(1e6);
