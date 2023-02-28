@@ -9,10 +9,10 @@
 #include "graphic.h"
 
 static t_accurate_pos rev_send_ray_draw_wall(struct map *map,
-                                   t_accurate_pos *start,
-                                   double angle,
-                                   double step,
-                                   struct display *ds)
+                                             t_accurate_pos *start,
+                                             double angle,
+                                             double step,
+                                             struct display *ds)
 {
     t_accurate_pos pos;
     t_bunny_position post;
@@ -35,7 +35,7 @@ static t_accurate_pos rev_send_ray_draw_wall(struct map *map,
         if (map->map[(map->width * (post.y / map->tile_size))
                      + (post.x / map->tile_size)] == 0
             || map->map[(map->width * (post.y / map->tile_size))
-                     + (post.x / map->tile_size)] == 2) {
+                        + (post.x / map->tile_size)] == 2) {
             return pos;
         }
     }
@@ -43,9 +43,9 @@ static t_accurate_pos rev_send_ray_draw_wall(struct map *map,
 }
 
 t_accurate_pos send_ray_draw_wall(struct map *map,
-                        const t_accurate_pos *start,
-                        double angle,
-                        struct display *ds)
+                                  const t_accurate_pos *start,
+                                  double angle,
+                                  struct display *ds)
 {
     double step;
     t_accurate_pos pos;
