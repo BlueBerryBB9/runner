@@ -31,9 +31,6 @@ all:	$(NAME)
 $(NAME):	$(OBJS)
 		$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 
-exe:	$(NAME)
-	./$(NAME)
-
 clean:
 	@$(RM) $(OBJS)
 

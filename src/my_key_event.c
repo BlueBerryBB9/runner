@@ -8,12 +8,6 @@
 
 #include "graphic.h"
 
-static void stop_window(t_bunny_pixelarray *px, t_bunny_window *win)
-{
-    bunny_delete_clipable(&px->clipable);
-    bunny_stop(win);
-}
-
 static void wall_collision(struct map *map,
                            t_accurate_pos *pos,
                            t_accurate_pos send_pos)
@@ -40,9 +34,7 @@ static int if_end(struct display *ds)
     if (ds->map.map[(ds->map.width
                      * ((int) ds->pos.y / ds->map.tile_size))
                     + ((int) ds->pos.x / ds->map.tile_size)] == 2) {
-        stop_window(ds->px_fp, ds->win_fp);
         draw_level_end(ds->map, ds->px, ds->win, 3);
-        stop_window(ds->px, ds->win);
         return 1;
     }
     return 0;
@@ -58,7 +50,6 @@ t_bunny_response my_key_event(t_bunny_event_state state,
 
     ds = data;
     send_pos = ds->pos;
-    //printf("keycode: %d\n state %d\nposy %f\nposx %f\n", keycode, state, ds->pos.y, ds->pos.x);
     if (state == GO_UP){
         return (GO_ON);
     }

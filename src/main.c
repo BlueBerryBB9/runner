@@ -76,5 +76,6 @@ int main(void)
     bunny_set_key_response(my_key_event);
     bunny_loop(ds.win, 60, &ds);
     stop_window(ds.px_fp, ds.win_fp);
+    stop_window(ds.px, ds.win);
     return (0);
 }
