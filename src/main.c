@@ -75,7 +75,7 @@ int main(void)
     refresh(ds.win_fp, ds.px_fp);
     bunny_set_key_response(my_key_event);
     bunny_loop(ds.win, 60, &ds);
-    stop_window(ds.px_fp, ds.win_fp);
     stop_window(ds.px, ds.win);
+    stop_window(ds.px_fp, ds.win_fp);
     return (0);
 }

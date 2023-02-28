@@ -42,6 +42,15 @@ static t_accurate_pos rev_send_ray_draw_wall(struct map *map,
     return pos;
 }
 
+static void choose_step(double *step, double *count)
+{
+    if (*count < 50) {
+        *step = 0.1;
+    } else {
+        *step = 0.35;
+    }
+}
+
 t_accurate_pos send_ray_draw_wall(struct map *map,
                                   const t_accurate_pos *start,
                                   double angle,
@@ -65,7 +74,7 @@ t_accurate_pos send_ray_draw_wall(struct map *map,
         if (map->map[(map->width * (post.y / map->tile_size))
                      + (post.x / map->tile_size)] == 1) {
             angle += M_PI;
-            step = 0.35;
+            choose_step(&step, &ds->count);
             pos = rev_send_ray_draw_wall(map, &pos, angle, step, ds);
             return pos;
         }
