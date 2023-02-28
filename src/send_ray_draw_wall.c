@@ -52,13 +52,13 @@ t_accurate_pos send_ray_draw_wall(struct map *map,
     t_bunny_position post;
 
     ds->count = 0;
-    step = 10;
+    step = 2;
     pos.x = start->x;
     pos.y = start->y;
-    while ((pos.x / map->tile_size) < map->width
-           && (pos.y / map->tile_size) < map->height
-           && (pos.x / map->tile_size) > 0
-           && (pos.y / map->tile_size) > 0) {
+    while (pos.x < map->width * map->tile_size
+           && pos.y < map->height * map->tile_size
+           && pos.x > 0
+           && pos.y > 0) {
         pos = move_forward(&pos, angle, step);
         post = pos_from_accurate(&pos);
         ds->count += step;
