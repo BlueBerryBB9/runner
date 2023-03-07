@@ -50,7 +50,7 @@ t_accurate_pos send_ray(struct map *map,
     pos.x = start->x;
     pos.y = start->y;
     while (pos.x < map->width && pos.y < map->height && pos.x > 0 && pos.y > 0) {
-        pos = move_forward(&pos, angle, (double) 10 / (double) map->tile_size);
+        pos = move_forward(&pos, angle, (double) step / (double) map->tile_size);
         post = pos_from_accurate(&pos);
         if (map->map[(map->width * post.y) + post.x] == 1) {
             if (step == 1) {

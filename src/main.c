@@ -34,7 +34,7 @@ static void init_first_person_window(struct display *ds)
     ds->col_up     = mk_colour(0, 255, 255, 255);
     ds->col_wall   = mk_colour(128, 128, 128, 255);
     ds->col_bottom = mk_colour(57, 255, 20, 255);
-    ds->win_fp     = bunny_start(800,
+    ds->win_fp     = bunny_start(950,
                                  600,
                                  false,
                                  "fl: TP Runner - First_person");
