@@ -32,7 +32,7 @@ int draw_wall(struct display *ds, int fov)
     column = 0;
     dir = -1 * deg_to_rads(fov / 2);
     while (ds->direction + dir <= ds->direction + deg_to_rads(fov / 2)
-           || column <=ds->win_fp->buffer.width) {
+           && column <= ds->win_fp->buffer.width) {
         send_ray_draw_wall(&ds->map,
                            &ds->pos,
                            ds->direction + dir,
