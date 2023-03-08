@@ -25,7 +25,7 @@ static void init_s_map(struct map *map)
 {
     map->width     = 19;
     map->height    = 10;
-    map->tile_size = 25;
+    map->tile_size = 20;
     map->map       = mx;
 }
 
