@@ -17,7 +17,7 @@ int mx[19 * 10] = {
     1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1,
     1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1,
     1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1,
+    1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 };
 
@@ -31,11 +31,11 @@ static void init_s_map(struct map *map)
 
 static void init_first_person_window(struct display *ds)
 {
-    ds->col_up     = mk_colour(150, 150, 0, 255);
+    ds->col_up     = mk_colour(0, 255, 255, 255);
     //ds->col_wall   = mk_colour(0, 128, 128, 255);
-    ds->col_bottom = mk_colour(0, 0, 0, 255);
+    ds->col_bottom = mk_colour(57, 255, 20, 255);
     ds->win_fp     = bunny_start(1000,
-                                 500,
+                                 700,
                                  false,
                                  "fl: TP Runner - First_person");
     ds->px_fp      = bunny_new_pixelarray(ds->win_fp->buffer.width,
@@ -48,7 +48,7 @@ static void init_labyrinth_info(struct display *ds)
     ds->pos.y     = 1.5 * ds->map.tile_size;
     ds->direction = 0.5 * M_PI;
     ds->count     = 0;
-    ds->fov       = 100;
+    ds->fov       = 90;
 }
 
 static void stop_window(t_bunny_pixelarray *px, t_bunny_window *win)
