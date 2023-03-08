@@ -34,7 +34,7 @@ static void init_first_person_window(struct display *ds)
     ds->col_up     = mk_colour(0, 255, 255, 255);
     //ds->col_wall   = mk_colour(0, 128, 128, 255);
     ds->col_bottom = mk_colour(57, 255, 20, 255);
-    ds->win_fp     = bunny_start(1000,
+    ds->win_fp     = bunny_start(800,
                                  700,
                                  false,
                                  "fl: TP Runner - First_person");
@@ -48,7 +48,7 @@ static void init_labyrinth_info(struct display *ds)
     ds->pos.y     = 1.5 * ds->map.tile_size;
     ds->direction = 0.5 * M_PI;
     ds->count     = 0;
-    ds->fov       = 90;
+    ds->fov       = 70;
 }
 
 static void stop_window(t_bunny_pixelarray *px, t_bunny_window *win)

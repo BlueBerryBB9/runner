@@ -22,7 +22,10 @@ static void clear_column(struct display *ds, double height, int column)
     bpos.x = column;
     bpos.y = ds->win_fp->buffer.height - pos.y;
     col = (155 * height) / ds->win_fp->buffer.height;
-    stu_draw_line(ds->px_fp, &pos, &bpos, mk_colour(50 + col, 50 + col, 50 + col, 255));
+    stu_draw_line(ds->px_fp, &pos, &bpos, mk_colour(50 + col,
+                                                    50 + col,
+                                                    50 + col,
+                                                    255));
 }
 
 int draw_wall(struct display *ds, int fov)
