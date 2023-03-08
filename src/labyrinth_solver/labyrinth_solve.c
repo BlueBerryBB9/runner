@@ -14,7 +14,7 @@ int labyrinth_solve(struct map *map,
           t_bunny_pixelarray *px)
 {
     double direction;
-    t_accurate_pos apos;
+    //t_accurate_pos apos;
     int round;
 
     round = 0;
@@ -27,9 +27,9 @@ int labyrinth_solve(struct map *map,
             return 2;
         }
         div_or_mult_pos(&pos, map->tile_size, '*');
-        apos = pos;
+        //apos = pos;
+        draw_pacman(px, pos, direction, map->tile_size / 4);
         div_or_mult_pos(&pos, map->tile_size, '/');
-        draw_pacman(px, apos, direction, map->tile_size / 4);
         refresh(win, px);
         //bunny_usleep(1e3);
         round += 1;
