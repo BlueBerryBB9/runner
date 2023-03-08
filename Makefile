@@ -35,7 +35,7 @@ clean:
 	@$(RM) $(OBJS)
 
 clear:
-	@$(RM) */*/*~ */*~ include/*~
+	@$(RM) */*/*~ */*~ include/*~ *#*
 
 fclean: clean clear
 	@$(RM) $(NAME)

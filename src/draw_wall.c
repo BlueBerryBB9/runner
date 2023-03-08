@@ -12,6 +12,7 @@ static void clear_column(struct display *ds, double height, int column)
 {
     t_bunny_position pos;
     t_bunny_position bpos;
+    int col;
 
     if (height > ds->win_fp->buffer.height) {
         height = ds->win_fp->buffer.height;
@@ -20,7 +21,8 @@ static void clear_column(struct display *ds, double height, int column)
     pos.y = ((ds->win_fp->buffer.height - height) / 2);
     bpos.x = column;
     bpos.y = ds->win_fp->buffer.height - pos.y;
-    stu_draw_line(ds->px_fp, &pos, &bpos, WHITE);
+    col = (130 * height) / ds->win_fp->buffer.height;
+    stu_draw_line(ds->px_fp, &pos, &bpos, mk_colour(0, 0, 125 + col, 255));
 }
 
 int draw_wall(struct display *ds, int fov)
@@ -38,7 +40,7 @@ int draw_wall(struct display *ds, int fov)
                            ds->direction + dir,
                            ds);
         height = (ds->win_fp->buffer.height * ds->map.tile_size) /
-            (ds->count * cos((ds->direction + dir) - ds->direction));
+            (ds->count * cos(ds->direction - (ds->direction + dir)));
         clear_column(ds, height, column);
         dir += deg_to_rads((fov)) / ds->win_fp->buffer.width;
         column += 1;

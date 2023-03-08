@@ -33,6 +33,7 @@ struct display {
     double direction;
     double step;
     double count;
+    int fov;
 
 };
 
