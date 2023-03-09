@@ -25,7 +25,7 @@ static void init_s_map(struct map *map)
 {
     map->width     = 19;
     map->height    = 10;
-    map->tile_size = 20;
+    map->tile_size = 25;
     map->map       = mx;
 }
 
@@ -34,7 +34,7 @@ static void init_first_person_window(struct display *ds)
     ds->col_up     = mk_colour(0, 255, 255, 255);
     //ds->col_wall   = mk_colour(0, 128, 128, 255);
     ds->col_bottom = mk_colour(57, 255, 20, 255);
-    ds->win_fp     = bunny_start(800,
+    ds->win_fp     = bunny_start(900,
                                  700,
                                  false,
                                  "fl: TP Runner - First_person");

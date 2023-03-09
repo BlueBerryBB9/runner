@@ -47,7 +47,7 @@ static void choose_step(double *step, double *count)
     if (*count < 50) {
         *step = 0.1;
     } else {
-        *step = 0.35;
+        *step = 0.25;
     }
 }
 

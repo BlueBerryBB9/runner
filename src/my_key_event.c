@@ -64,9 +64,7 @@ t_bunny_response my_key_event(t_bunny_event_state state,
     refresh_map(&ds->map, ds->px);
     first_person(ds, ds->fov);
     refresh(ds->win_fp, ds->px_fp);
-    /*
-     * draw_pacman(ds->px, ds->pos, ds->direction, ds->map.tile_size / 5);
-     */
+    draw_pacman(ds->px, ds->pos, ds->direction, ds->map.tile_size / 5);
     bpos = pos_from_accurate(&ds->pos);
     put_pixel(ds->px, &bpos, GREEN);
     refresh(ds->win, ds->px);
