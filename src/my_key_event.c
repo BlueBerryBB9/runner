@@ -54,7 +54,7 @@ t_bunny_response my_key_event(t_bunny_event_state state,
     /*
      * make_keys(keycode, ds);
      */
-    wall_collision(&ds->map, &ds->pos, send_pos);
+    //wall_collision(&ds->map, &ds->pos, send_pos);
     /*
      * if (if_end(ds) == 1) {
      *     return (EXIT_ON_SUCCESS);
