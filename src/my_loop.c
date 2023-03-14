@@ -13,6 +13,8 @@ static void wall_collision(struct map *map,
                            t_accurate_pos *pos,
                            t_accurate_pos send_pos)
 {
+    printf("pos.x %f", pos->x);
+    printf("pos.y %f", pos->y);
     if (((int) pos->x / map->tile_size) > map->width
         && ((int) pos->y / map->tile_size) > map->height
         && ((int) pos->x / map->tile_size) < 0
@@ -48,6 +50,7 @@ t_bunny_response my_loop(void *data)
     t_accurate_pos send_pos;
 
     ds = data;
+    send_pos = ds->pos;
     keys = bunny_get_keyboard();
     if (keys[BKS_ESCAPE]) {
         return (EXIT_ON_SUCCESS);
