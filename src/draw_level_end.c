@@ -52,7 +52,7 @@ void draw_level_end(struct map map,
     struct map nmap;
     nmap.width     = 19;
     nmap.height    = 10;
-    nmap.tile_size = map.tile_size;
+    nmap.tile_size = win->buffer.width / map.width;
     nmap.map       = mxx;
     while (time != 0) {
         if (time % 2 == 0) {

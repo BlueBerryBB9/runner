@@ -16,9 +16,10 @@
 typedef t_bunny_accurate_position t_accurate_pos;
 
 struct display {
-    t_bunny_window *win;
-    t_bunny_pixelarray *px;
-
+    /*
+     * t_bunny_window *win;
+     * t_bunny_pixelarray *px;
+     */
     t_bunny_window *win_fp;
     t_bunny_pixelarray *px_fp;
 

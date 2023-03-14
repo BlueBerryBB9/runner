@@ -19,6 +19,9 @@ void refresh_map(struct map *map, t_bunny_pixelarray *px)
             if (map->map[origin.x + (origin.y * map->width)] == 0) {
                 draw_block(map, px, origin, BLACK);
             }
+            if (map->map[origin.x + (origin.y * map->width)] == 2) {
+                draw_block(map, px, origin, BLUE);
+            }
             origin.x += 1;
         }
         origin.x = 0;
