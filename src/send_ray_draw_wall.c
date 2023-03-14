@@ -19,12 +19,14 @@ static t_accurate_pos rev_send_ray_draw_wall(struct map *map,
 
     pos.x = start->x;
     pos.y = start->y;
-    pos = move_forward(&pos, angle, step);
-    post = pos_from_accurate(&pos);
-    if (map->map[(map->width * (post.y / map->tile_size))
-                 + (post.x / map->tile_size)] == 0) {
-        return pos;
-    }
+    /*
+     * pos = move_forward(&pos, angle, step);
+     * post = pos_from_accurate(&pos);
+     * if (map->map[(map->width * (post.y / map->tile_size))
+     *              + (post.x / map->tile_size)] == 0) {
+     *     return pos;
+     * }
+     */
     while (pos.x / map->tile_size < map->width
            && pos.y / map->tile_size < map->height
            && pos.x / map->tile_size > 0

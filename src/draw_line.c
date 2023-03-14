@@ -13,6 +13,9 @@ static void if_posax_sup_posbx(t_bunny_position *pos_a,
                                int *x,
                                int *bx)
 {
+    *x = pos_a->x;
+    *bx = pos_b->x;
+
     if (pos_a->x > pos_b->x) {
         *bx = pos_a->x;
         *x = pos_b->x;
@@ -24,6 +27,9 @@ static void if_posay_sup_posby(t_bunny_position *pos_a,
                                int *y,
                                int *by)
 {
+    *y = pos_a->y;
+    *by = pos_b->y;
+
     if (pos_a->y > pos_b->y) {
         *by = pos_a->y;
         *y = pos_b->y;
@@ -41,10 +47,6 @@ void stu_draw_line(t_bunny_pixelarray *px,
     int by;
     t_bunny_position pos;
 
-    x = pos_a->x;
-    y = pos_a->y;
-    bx = pos_b->x;
-    by = pos_b->y;
     if_posay_sup_posby(pos_a, pos_b, &y, &by);
     if_posax_sup_posbx(pos_a, pos_b, &x, &bx);
     if ((bx - x) > (by - y)) {
@@ -63,6 +65,5 @@ void stu_draw_line(t_bunny_pixelarray *px,
             put_pixel(px, &pos, color);
             y = y + 1;
         }
-        return ;
     }
 }
