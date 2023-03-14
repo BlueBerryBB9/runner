@@ -24,6 +24,6 @@ void put_pixel(t_bunny_pixelarray *px,
     if (i > (width * height)) {
         return;
     }
-    tableau = (unsigned int *)px->pixels;
+    tableau = (unsigned int *) px->pixels;
     tableau[i] = color;
 }

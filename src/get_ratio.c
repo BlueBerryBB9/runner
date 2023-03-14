@@ -10,7 +10,7 @@ float get_ratio(int a, int b, int x)
 {
     float ratio;
 
-    ratio = ((float)x - (float)a) / ((float)b - (float)a);
+    ratio = ((float) x - (float) a) / ((float) b - (float) a);
 
     return (ratio);
 }
