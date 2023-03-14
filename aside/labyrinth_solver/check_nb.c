@@ -19,7 +19,6 @@ int check_nb(int nb, double *dir)
         }
         return 0;
     }
-    //if_dead_end();
     if (*dir == 0.5 * M_PI) {
         if (nb == 1 || nb == 1000 || nb == 1001) {
             *dir = 2 * M_PI;

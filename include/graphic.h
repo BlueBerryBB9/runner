@@ -61,9 +61,9 @@ void put_pixel(t_bunny_pixelarray *px,
                unsigned int color);
 
 void draw_block(struct map *map,
-                       t_bunny_pixelarray *px,
-                       t_bunny_position origin,
-                       unsigned int color);
+                t_bunny_pixelarray *px,
+                t_bunny_position origin,
+                unsigned int color);
 
 int radar(struct map *map,
           t_accurate_pos *pos,

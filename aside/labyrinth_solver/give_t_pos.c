@@ -16,5 +16,4 @@ t_bunny_position give_acc_pos(t_accurate_pos *pos, double angle)
     N = move_forward(pos, angle, 1);
     n = pos_from_accurate(&N);
     return n;
-
 }

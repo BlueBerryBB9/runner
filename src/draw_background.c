@@ -14,7 +14,7 @@ void draw_background(struct display *ds, t_bunny_pixelarray *px)
     unsigned int *tableau;
 
     i = 0;
-    tableau = (unsigned int *)px->pixels;
+    tableau = (unsigned int *) px->pixels;
     while (i <= (px->clipable.clip_width
                  * px->clipable.clip_height) / 2) {
         tableau[i] = ds->col_up;

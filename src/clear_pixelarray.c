@@ -14,7 +14,7 @@ void clear_pixelarray(t_bunny_pixelarray *pxa, unsigned int color)
     unsigned int *tableau;
 
     i = 0;
-    tableau = (unsigned int *)pxa->pixels;
+    tableau = (unsigned int *) pxa->pixels;
     while (i <= (pxa->clipable.clip_width * pxa->clipable.clip_height)) {
         tableau[i] = color;
         i = i + 1;

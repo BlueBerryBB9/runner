@@ -14,12 +14,10 @@ int labyrinth_solve(struct map *map,
           t_bunny_pixelarray *px)
 {
     double direction;
-    //t_accurate_pos apos;
     int round;
 
     round = 0;
-    direction = 0.5 * M_PI; /* direction de départ (la case suivante dans cette
-                               direction doit être vide) */
+    direction = 0.5 * M_PI;
     while (direction != 1) {
         refresh_map(map, px);
         if (moving(map, &pos, &direction) == 2) {
@@ -27,7 +25,6 @@ int labyrinth_solve(struct map *map,
             return 2;
         }
         div_or_mult_pos(&pos, map->tile_size, '*');
-        //apos = pos;
         draw_pacman(px, pos, direction, map->tile_size / 4);
         div_or_mult_pos(&pos, map->tile_size, '/');
         refresh(win, px);
