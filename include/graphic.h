@@ -12,12 +12,15 @@
 #include "display.h"
 #include "labyrinth_solver.h"
 #include "character.h"
+#include "gfx_context.h"
 
 #ifndef GRAPHIC_H_
 
 #define GRAPHIC_H_
 
 typedef t_bunny_accurate_position t_accurate_pos;
+
+t_bunny_response my_loop(void *data);
 
 int first_person(struct display *ds, int fov);
 
