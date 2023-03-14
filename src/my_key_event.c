@@ -50,10 +50,10 @@ t_bunny_response my_key_event(t_bunny_event_state state,
 
     ds = data;
     send_pos = ds->pos;
-    if (state == GO_UP){
+    if (state == GO_UP) {
         return (GO_ON);
     }
-    if (keycode == BKS_ESCAPE){
+    if (keycode == BKS_ESCAPE) {
         return (EXIT_ON_SUCCESS);
     }
     make_keys(keycode, ds);

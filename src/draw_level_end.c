@@ -30,7 +30,7 @@ static void draw_end_color(struct map *map,
     origin.x = 0;
     origin.y = 0;
     while (origin.y < map->height) {
-        while (origin.x < map->width){
+        while (origin.x < map->width) {
             if (map->map[origin.x + (origin.y * map->width)] == 1) {
                 draw_block(map, px, origin, color);
             }
