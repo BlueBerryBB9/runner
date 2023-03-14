@@ -31,11 +31,14 @@ static void init_s_map(struct map *map)
 
 static void init_first_person_window(struct display *ds)
 {
+    int width;
+
     ds->col_up     = mk_colour(0, 255, 255, 255);
     //ds->col_wall   = mk_colour(0, 128, 128, 255);
     ds->col_bottom = mk_colour(57, 255, 20, 255);
-    ds->win_fp     = bunny_start(950,
-                                 500,
+    width = 600;
+    ds->win_fp     = bunny_start((double) width * (double) 1.9,
+                                 width,
                                  false,
                                  "fl: TP Runner - First_person");
     ds->px_fp      = bunny_new_pixelarray(ds->win_fp->buffer.width,
