@@ -37,10 +37,10 @@ static void manage_arrows_loop(struct display *ds, const bool *keys)
         ds->pos = move_forward(&ds->pos, ds->direction + M_PI, ds->step);
     }
     if (keys[BKS_LEFT]) {
-        ds->direction -= M_PI / 10;
+        ds->direction -= M_PI / 15;
     }
     if (keys[BKS_RIGHT]) {
-        ds->direction += M_PI / 10;
+        ds->direction += M_PI / 15;
     }
 }
 
