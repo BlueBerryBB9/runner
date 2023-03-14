@@ -6,12 +6,7 @@
  * description: make colour
  */
 
-//#include <lapin.h>
-
-union colour {
-    unsigned int full;
-    unsigned char rgba[4];
-};
+#include "color.h"
 
 unsigned int mk_colour(unsigned char r,
                        unsigned char g,

@@ -44,8 +44,10 @@ static void init_first_person_window(struct display *ds)
 
 static void init_labyrinth_info(struct display *ds)
 {
-    ds->pos.x     = 1.5 * ds->map.tile_size;
-    ds->pos.y     = 1.5 * ds->map.tile_size;
+    ds->pos.x     = 1.5; //* ds->map.tile_size;
+    ds->pos.y     = 1.5; //* ds->map.tile_size;
+    ds->pos.x     *= ds->map.tile_size;
+    ds->pos.y     *= ds->map.tile_size;
     ds->direction = 0.5 * M_PI;
     ds->count     = 0;
     ds->fov       = 70;
@@ -77,7 +79,7 @@ int main(void)
     refresh(ds.win_fp, ds.px_fp);
     bunny_set_key_response(my_key_event);
     bunny_set_loop_main_function(my_loop);
-    bunny_loop(ds.win_fp, 20, &ds);
+    bunny_loop(ds.win_fp, 60, &ds);
     stop_window(ds.px, ds.win);
     stop_window(ds.px_fp, ds.win_fp);
     return (0);

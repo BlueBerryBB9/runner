@@ -12,11 +12,14 @@
 #include "display.h"
 #include "labyrinth_solver.h"
 #include "character.h"
-#include "gfx_context.h"
+//#include "gfx_context.h"
+#include "color.h"
 
 #ifndef GRAPHIC_H_
 
 #define GRAPHIC_H_
+
+void make_keys_loop(const bool *keys, struct display *ds);
 
 typedef t_bunny_accurate_position t_accurate_pos;
 
