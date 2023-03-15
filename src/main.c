@@ -8,25 +8,34 @@
 
 #include "graphic.h"
 
-int mx[19 * 10] = {
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 0, 1,
-    1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1,
-    1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1,
-    1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1,
-    1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1,
-    1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1,
-    1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-};
+/*
+ * int mx[19 * 10] = {
+ *     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+ *     1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 0, 1,
+ *     1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1,
+ *     1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1,
+ *     1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1,
+ *     1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1,
+ *     1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1,
+ *     1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1,
+ *     1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,
+ *     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+ * };
+ */
 
-static void init_s_map(struct map *map)
+static void init_s_map(struct display *ds)
 {
-    map->width     = 19;
-    map->height    = 10;
-    map->tile_size = 20;
-    map->map       = mx;
+    char *map_name;
+
+    map_name = "maps/map1.txt";
+    put_map_in_table(ds, map_name);
+    printf("map : %ls\n", ds->map.map);
+    if (ds->map.width > ds->map.height) {
+        ds->ratio = (double) ds->map.width / (double) ds->map.height;
+    } else {
+        ds->ratio = (double) ds->map.height / (double) ds->map.width;
+    }
+    printf("ratio %f\n", ds->ratio);
 }
 
 static void init_first_person_window(struct display *ds)
@@ -34,16 +43,17 @@ static void init_first_person_window(struct display *ds)
     int width;
 
     ds->col.up        = mk_colour(0, 255, 255, 255);
-    //ds->col.wall    = mk_colour(0, 128, 128, 255);
+    //ds->col.wall      = mk_colour(0, 128, 128, 255);
     ds->col.bottom    = mk_colour(57, 255, 20, 255);
     ds->col.crosshair = mk_colour(0, 255, 0, 255);
     width             = 600;
-    ds->win           = bunny_start((double) width * (double) 1.9,
-                                 width,
-                                 false,
-                                 "fl: TP Runner - First_person");
+    ds->win           = bunny_start((double) width * (double) ds->ratio,
+                                    width,
+                                    false,
+                                    "fl: TP Runner - First_person");
     ds->px            = bunny_new_pixelarray(ds->win->buffer.width,
-                                          ds->win->buffer.height);
+                                             ds->win->buffer.height);
+    ds->map.tile_size = (ds->win->buffer.width / 3) / ds->map.width;
 }
 
 static void init_labyrinth_info(struct display *ds)
@@ -67,7 +77,7 @@ static void stop_window(t_bunny_pixelarray *px, t_bunny_window *win)
 int main(void)
 {
     struct display ds;
-    init_s_map(&ds.map);
+    init_s_map(&ds);
     init_first_person_window(&ds);
     init_labyrinth_info(&ds);
     draw_background(&ds, ds.px);

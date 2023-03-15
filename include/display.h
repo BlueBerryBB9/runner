@@ -36,6 +36,7 @@ struct display {
     double count;
     int fov;
     int coef;
+    float ratio;
 };
 
 #endif

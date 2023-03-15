@@ -8,25 +8,17 @@
 
 #include "graphic.h"
 
-static t_accurate_pos rev_send_ray_draw_wall(struct map *map,
-                                             t_accurate_pos *start,
-                                             double angle,
-                                             double step,
-                                             struct display *ds)
+static int rev_send_ray_draw_wall(struct map *map,
+                                  t_accurate_pos *start,
+                                  double angle,
+                                  double step,
+                                  struct display *ds)
 {
     t_accurate_pos pos;
     t_bunny_position post;
 
     pos.x = start->x;
     pos.y = start->y;
-    /*
-     * pos = move_forward(&pos, angle, step);
-     * post = pos_from_accurate(&pos);
-     * if (map->map[(map->width * (post.y / map->tile_size))
-     *              + (post.x / map->tile_size)] == 0) {
-     *     return pos;
-     * }
-     */
     while (pos.x / map->tile_size < map->width
            && pos.y / map->tile_size < map->height
            && pos.x / map->tile_size > 0
@@ -35,13 +27,15 @@ static t_accurate_pos rev_send_ray_draw_wall(struct map *map,
         post = pos_from_accurate(&pos);
         ds->count -= step;
         if (map->map[(map->width * (post.y / map->tile_size))
-                     + (post.x / map->tile_size)] == 0
-            || map->map[(map->width * (post.y / map->tile_size))
-                        + (post.x / map->tile_size)] == 2) {
-            return pos;
+                     + (post.x / map->tile_size)] == 0) {
+            return 0;
+        }
+        if (map->map[(map->width * (post.y / map->tile_size))
+                     + (post.x / map->tile_size)] == 2) {
+            return 2;
         }
     }
-    return pos;
+    return -1;
 }
 
 static void choose_step(double *step, double *count)
@@ -53,21 +47,21 @@ static void choose_step(double *step, double *count)
     }
 }
 
-t_accurate_pos send_ray_draw_wall(struct map *map,
-                                  const t_accurate_pos *start,
-                                  double angle,
-                                  struct display *ds)
+int send_ray_draw_wall(struct map *map,
+                       const t_accurate_pos *start,
+                       double angle,
+                       struct display *ds)
 {
     double step;
     t_accurate_pos pos;
     t_bunny_position post;
 
     ds->count = 0;
-    step = 2;
+    step = 1;
     pos.x = start->x;
     pos.y = start->y;
-    while (pos.x < map->width * map->tile_size
-           && pos.y < map->height * map->tile_size
+    while (pos.x / map->tile_size < map->width
+           && pos.y / map->tile_size < map->height
            && pos.x > 0
            && pos.y > 0) {
         pos = move_forward(&pos, angle, step);
@@ -77,10 +71,8 @@ t_accurate_pos send_ray_draw_wall(struct map *map,
                      + (post.x / map->tile_size)] == 1) {
             angle += M_PI;
             choose_step(&step, &ds->count);
-            pos = rev_send_ray_draw_wall(map, &pos, angle, step, ds);
-            return pos;
+            return rev_send_ray_draw_wall(map, &pos, angle, step, ds);
         }
     }
-    pos = rev_send_ray_draw_wall(map, &pos, angle, step, ds);
-    return pos;
+    return rev_send_ray_draw_wall(map, &pos, angle, step, ds);
 }

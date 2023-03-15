@@ -12,16 +12,17 @@
 #include "display.h"
 #include "labyrinth_solver.h"
 #include "character.h"
-//#include "gfx_context.h"
 #include "color.h"
 
 #ifndef GRAPHIC_H_
 
 #define GRAPHIC_H_
 
+typedef t_bunny_accurate_position t_accurate_pos;
+
 void make_keys_loop(const bool *keys, struct display *ds);
 
-typedef t_bunny_accurate_position t_accurate_pos;
+void put_map_in_table(struct display *ds, char *map_name);
 
 t_bunny_response my_loop(void *data);
 
@@ -100,7 +101,7 @@ t_accurate_pos send_ray(struct map *map,
                         const t_accurate_pos *start,
                         double angle);
 
-t_accurate_pos send_ray_draw_wall(struct map *map,
+int send_ray_draw_wall(struct map *map,
                                   const t_accurate_pos *start,
                                   double angle,
                                   struct display *ds);
