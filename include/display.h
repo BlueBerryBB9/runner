@@ -15,17 +15,18 @@
 
 typedef t_bunny_accurate_position t_accurate_pos;
 
-struct display {
-    /*
-     * t_bunny_window *win;
-     * t_bunny_pixelarray *px;
-     */
-    t_bunny_window *win_fp;
-    t_bunny_pixelarray *px_fp;
+struct col {
+    int up;
+    int bottom;
+    int wall;
+    int crosshair;
+};
 
-    int col_up;
-    int col_bottom;
-    int col_wall;
+struct display {
+    t_bunny_window *win;
+    t_bunny_pixelarray *px;
+
+    struct col col;
 
     t_accurate_pos pos;
     struct map map;
@@ -34,6 +35,7 @@ struct display {
     double step;
     double count;
     int fov;
+    int coef;
 };
 
 #endif

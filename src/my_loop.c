@@ -35,7 +35,7 @@ static int if_end(struct display *ds)
     if (ds->map.map[(ds->map.width
                      * ((int) ds->pos.y / ds->map.tile_size))
                     + ((int) ds->pos.x / ds->map.tile_size)] == 2) {
-        draw_level_end(ds->map, ds->px_fp, ds->win_fp, 3);
+        draw_level_end(ds->map, ds->px, ds->win, 3);
         return 1;
     }
     return 0;
@@ -59,8 +59,8 @@ t_bunny_response my_loop(void *data)
         return (EXIT_ON_SUCCESS);
     }
     first_person(ds, ds->fov);
-    refresh_map(&ds->map, ds->px_fp);
-    draw_pacman(ds->px_fp, ds->pos, ds->direction, ds->map.tile_size / 5);
-    refresh(ds->win_fp, ds->px_fp);
+    refresh_map(&ds->map, ds->px);
+    draw_pacman(ds->px, ds->pos, ds->direction, ds->map.tile_size / 5);
+    refresh(ds->win, ds->px);
     return (GO_ON);
 }

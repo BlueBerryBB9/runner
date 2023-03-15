@@ -14,15 +14,15 @@ static void clear_column(struct display *ds, double height, int column)
     t_bunny_position bpos;
     int col;
 
-    if (height > ds->win_fp->buffer.height) {
-        height = ds->win_fp->buffer.height;
+    if (height > ds->win->buffer.height) {
+        height = ds->win->buffer.height;
     }
     pos.x = column;
-    pos.y = ((ds->win_fp->buffer.height - height) / 2);
+    pos.y = ((ds->win->buffer.height - height) / 2);
     bpos.x = column;
-    bpos.y = ds->win_fp->buffer.height - pos.y;
-    col = (155 * height) / ds->win_fp->buffer.height;
-    stu_draw_line(ds->px_fp, &pos, &bpos, mk_colour(75 + col,
+    bpos.y = ds->win->buffer.height - pos.y;
+    col = (155 * height) / ds->win->buffer.height;
+    stu_draw_line(ds->px, &pos, &bpos, mk_colour(75 + col,
                                                     75 + col,
                                                     75 + col,
                                                     255));
@@ -37,15 +37,15 @@ int draw_wall(struct display *ds, int fov)
     column = 0;
     dir = -1 * deg_to_rads(fov / 2);
     while (ds->direction + dir <= ds->direction + deg_to_rads(fov / 2)
-           && column <= ds->win_fp->buffer.width) {
+           && column <= ds->win->buffer.width) {
         send_ray_draw_wall(&ds->map,
                            &ds->pos,
                            ds->direction + dir,
                            ds);
-        height = (ds->win_fp->buffer.height * ds->map.tile_size) /
+        height = (ds->win->buffer.height * ds->map.tile_size) /
             (ds->count * cos(ds->direction - (ds->direction + dir)));
         clear_column(ds, height, column);
-        dir += deg_to_rads((fov)) / ds->win_fp->buffer.width;
+        dir += deg_to_rads((fov)) / ds->win->buffer.width;
         column += 1;
     }
     return height;

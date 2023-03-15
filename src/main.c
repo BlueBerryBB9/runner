@@ -33,16 +33,17 @@ static void init_first_person_window(struct display *ds)
 {
     int width;
 
-    ds->col_up     = mk_colour(0, 255, 255, 255);
-    //ds->col_wall   = mk_colour(0, 128, 128, 255);
-    ds->col_bottom = mk_colour(57, 255, 20, 255);
-    width = 600;
-    ds->win_fp     = bunny_start((double) width * (double) 1.9,
+    ds->col.up        = mk_colour(0, 255, 255, 255);
+    //ds->col.wall    = mk_colour(0, 128, 128, 255);
+    ds->col.bottom    = mk_colour(57, 255, 20, 255);
+    ds->col.crosshair = mk_colour(0, 255, 0, 255);
+    width             = 600;
+    ds->win           = bunny_start((double) width * (double) 1.9,
                                  width,
                                  false,
                                  "fl: TP Runner - First_person");
-    ds->px_fp      = bunny_new_pixelarray(ds->win_fp->buffer.width,
-                                          ds->win_fp->buffer.height);
+    ds->px            = bunny_new_pixelarray(ds->win->buffer.width,
+                                          ds->win->buffer.height);
 }
 
 static void init_labyrinth_info(struct display *ds)
@@ -54,6 +55,7 @@ static void init_labyrinth_info(struct display *ds)
     ds->direction = 0.5 * M_PI;
     ds->count     = 0;
     ds->fov       = 90;
+    ds->coef      = 3;
 }
 
 static void stop_window(t_bunny_pixelarray *px, t_bunny_window *win)
@@ -68,13 +70,13 @@ int main(void)
     init_s_map(&ds.map);
     init_first_person_window(&ds);
     init_labyrinth_info(&ds);
-    draw_background(&ds, ds.px_fp);
+    draw_background(&ds, ds.px);
     draw_wall(&ds, ds.fov);
-    draw_map(&ds.map, ds.px_fp);
-    refresh(ds.win_fp, ds.px_fp);
+    draw_map(&ds.map, ds.px);
+    refresh(ds.win, ds.px);
     bunny_set_key_response(my_key_event);
     bunny_set_loop_main_function(my_loop);
-    bunny_loop(ds.win_fp, 144, &ds);
-    stop_window(ds.px_fp, ds.win_fp);
+    bunny_loop(ds.win, 144, &ds);
+    stop_window(ds.px, ds.win);
     return (0);
 }
