@@ -8,12 +8,14 @@
 
 #include "graphic.h"
 
-static void init_s_map(struct display *ds)
+static void init_s_map(struct display *ds, char *map)
 {
-    char *map_name;
-
-    map_name = "maps/map6.txt";
-    put_map_in_table(ds, map_name);
+    /*
+     * char *map_name;
+     * 
+     * map_name = "maps/map_50x50.txt";
+     */
+    put_map_in_table(ds, map);
     /*
      * if (ds->map.width > ds->map.height) {
      *     ds->ratio = (double) ds->map.width / (double) ds->map.height;
@@ -39,7 +41,11 @@ static void init_first_person_window(struct display *ds)
     ds->px            = bunny_new_pixelarray(ds->win->buffer.width,
                                              ds->win->buffer.height);
     ds->map.tile_size = 100;
-    ds->div_tile_size = ds->map.tile_size / 10;
+    if (ds->map.width > 75 || ds->map.height > 75){
+        ds->div_tile_size = 30;
+    } else {
+        ds->div_tile_size = 10;
+    }
 }
 
 static void init_labyrinth_info(struct display *ds)
@@ -60,10 +66,11 @@ static void stop_window(t_bunny_pixelarray *px, t_bunny_window *win)
     bunny_stop(win);
 }
 
-int main(void)
+int main(int ac, char **av)
 {
+    ac = ac;
     struct display ds;
-    init_s_map(&ds);
+    init_s_map(&ds, av[1]);
     init_first_person_window(&ds);
     init_labyrinth_info(&ds);
     draw_background(&ds, ds.px);
