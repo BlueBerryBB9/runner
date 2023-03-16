@@ -61,8 +61,6 @@ void draw_impact(struct map *map,
                  t_bunny_pixelarray *pxa,
                  const t_accurate_pos *start, double angle);
 
-void draw_map(struct map *map, t_bunny_pixelarray *px);
-
 void put_pixel(t_bunny_pixelarray *px,
                t_bunny_position *pos,
                unsigned int color);
@@ -80,9 +78,9 @@ int radar(struct map *map,
 
 void refresh(t_bunny_window *win, t_bunny_pixelarray *px);
 
-void refresh_map(struct map *map, t_bunny_pixelarray *px);
+void refresh_map(struct map *map, t_bunny_pixelarray *px, int coef);
 
-void draw_map(struct map *map, t_bunny_pixelarray *px);
+void draw_map(struct map *map, t_bunny_pixelarray *px, int coef);
 
 void stu_draw_line(t_bunny_pixelarray *px,
                    t_bunny_position *pos_a,

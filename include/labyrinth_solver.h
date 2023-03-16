@@ -73,10 +73,14 @@ void div_or_mult_pos(t_accurate_pos *pos, int coef, char c);
 
 void clear_pixelarray(t_bunny_pixelarray *pxa, unsigned int color);
 
-void draw_map(struct map *map, t_bunny_pixelarray *px);
+/*
+ * void draw_map(struct map *map, t_bunny_pixelarray *px);
+ */
 
 void refresh(t_bunny_window *win, t_bunny_pixelarray *px);
 
-void refresh_map(struct map *map, t_bunny_pixelarray *px);
+/*
+ * void refresh_map(struct map *map, t_bunny_pixelarray *px);
+ */
 
 #endif

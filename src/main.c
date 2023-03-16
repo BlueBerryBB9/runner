@@ -8,28 +8,12 @@
 
 #include "graphic.h"
 
-/*
- * int mx[19 * 10] = {
- *     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
- *     1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 0, 1,
- *     1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1,
- *     1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1,
- *     1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1,
- *     1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1,
- *     1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1,
- *     1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1,
- *     1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,
- *     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
- * };
- */
-
 static void init_s_map(struct display *ds)
 {
     char *map_name;
 
-    map_name = "maps/map2.txt";
+    map_name = "maps/map3.txt";
     put_map_in_table(ds, map_name);
-    printf("hereafterpmit");
     if (ds->map.width > ds->map.height) {
         ds->ratio = (double) ds->map.width / (double) ds->map.height;
     } else {
@@ -46,13 +30,14 @@ static void init_first_person_window(struct display *ds)
     ds->col.bottom    = mk_colour(57, 255, 20, 255);
     ds->col.crosshair = mk_colour(0, 255, 0, 255);
     width             = 600;
-    ds->win           = bunny_start((double) width * (double) 1.9,
+    ds->win           = bunny_start((double) width * (double) ds->ratio,
                                     width,
                                     false,
                                     "fl: TP Runner - First_person");
     ds->px            = bunny_new_pixelarray(ds->win->buffer.width,
                                              ds->win->buffer.height);
-    ds->map.tile_size = (ds->win->buffer.width / 3) / ds->map.width;
+    ds->map.tile_size = 50;
+    ds->div_tile_size = ds->map.tile_size / 5;
 }
 
 static void init_labyrinth_info(struct display *ds)
@@ -81,7 +66,7 @@ int main(void)
     init_labyrinth_info(&ds);
     draw_background(&ds, ds.px);
     draw_wall(&ds, ds.fov);
-    draw_map(&ds.map, ds.px);
+    draw_map(&ds.map, ds.px, ds.div_tile_size);
     refresh(ds.win, ds.px);
     bunny_set_key_response(my_key_event);
     bunny_set_loop_main_function(my_loop);

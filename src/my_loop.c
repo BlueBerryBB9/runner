@@ -59,8 +59,11 @@ t_bunny_response my_loop(void *data)
         return (EXIT_ON_SUCCESS);
     }
     first_person(ds, ds->fov);
-    refresh_map(&ds->map, ds->px);
-    draw_pacman(ds->px, ds->pos, ds->direction, ds->map.tile_size / 5);
+    refresh_map(&ds->map, ds->px, ds->div_tile_size);
+    div_or_mult_pos(&ds->pos, ds->div_tile_size, '/');
+    send_pos = ds->pos;
+    div_or_mult_pos(&ds->pos, ds->div_tile_size, '*');
+    draw_pacman(ds->px, send_pos, ds->direction, ds->map.tile_size / (5 * ds->div_tile_size));
     refresh(ds->win, ds->px);
     return (GO_ON);
 }

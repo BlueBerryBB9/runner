@@ -10,7 +10,7 @@
 
 static void manage_keys_loop(struct display *ds, const bool *keys)
 {
-    ds->step = ds->map.tile_size / 10;
+    ds->step = (double) ds->map.tile_size / (double) 10;
 
     if (keys[BKS_Z]) {
         ds->pos = move_forward(&ds->pos, ds->direction, ds->step);
@@ -28,7 +28,7 @@ static void manage_keys_loop(struct display *ds, const bool *keys)
 
 static void manage_arrows_loop(struct display *ds, const bool *keys)
 {
-    ds->step = ds->map.tile_size / 5;
+    ds->step = (double) ds->map.tile_size / (double) 5;
 
     if (keys[BKS_UP]) {
         ds->pos = move_forward(&ds->pos, ds->direction, ds->step);
@@ -37,10 +37,10 @@ static void manage_arrows_loop(struct display *ds, const bool *keys)
         ds->pos = move_forward(&ds->pos, ds->direction + M_PI, ds->step);
     }
     if (keys[BKS_LEFT]) {
-        ds->direction -= M_PI / 15;
+        ds->direction -= M_PI / 20;
     }
     if (keys[BKS_RIGHT]) {
-        ds->direction += M_PI / 15;
+        ds->direction += M_PI / 20;
     }
 }
 

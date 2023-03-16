@@ -57,14 +57,12 @@ static void found_width_and_height(struct display *ds, const char *buffer)
             return;
         }
         ds->map.height += 1;
-        printf("hg : %d\n", ds->map.height);
         n += 1;
     }
     n = 0;
     while (buffer[n] != '\n') {
         if (stu_strchr("012", buffer[n]) == 1) {
             ds->map.width += 1;
-            printf("wd : %d\n", ds->map.width);
         }
         n += 1;
     }
@@ -82,16 +80,10 @@ static void put_number_in_table(struct display *ds, char *buffer)
             || buffer[n] == '1'
             || buffer[n] == '2'
             || buffer[n] == '3') {
-            printf("buf %c\n", buffer[n]);
             ds->map.map[i] = buffer[n] - '0';
-            printf("map %d\n", ds->map.map[i]);
             i += 1;
         }
         n += 1;
-    }
-    while (i != n) {
-        printf("%d ", ds->map.map[i]);
-        i += 1;
     }
 }
 
@@ -106,10 +98,8 @@ void put_map_in_table(struct display *ds, char *map_name)
     buffer = malloc(sizeof(char) * sa.st_size + 1);
     buffer[sa.st_size] = '\0';
     read(fd, buffer, sa.st_size);
-    printf("%s\n", buffer);
     close(fd);
     found_width_and_height(ds, buffer);
-    printf("x%d, y%d\n", ds->map.width, ds->map.height);
     ds->map.map = malloc(sizeof(int) * (ds->map.width * ds->map.height));
     put_number_in_table(ds, buffer);
     free(buffer);

@@ -8,12 +8,13 @@
 
 #include "graphic.h"
 
-void refresh_map(struct map *map, t_bunny_pixelarray *px)
+void refresh_map(struct map *map, t_bunny_pixelarray *px, int coef)
 {
     t_bunny_position origin;
 
     origin.x = 0;
     origin.y = 0;
+    map->tile_size /= coef;
     while (origin.y < map->height) {
         while (origin.x < map->width) {
             if (map->map[origin.x + (origin.y * map->width)] == 0) {
@@ -27,4 +28,5 @@ void refresh_map(struct map *map, t_bunny_pixelarray *px)
         origin.x = 0;
         origin.y += 1;
     }
+    map->tile_size *= coef;
 }

@@ -41,9 +41,9 @@ static int rev_send_ray_draw_wall(struct map *map,
 static void choose_step(double *step, double *count)
 {
     if (*count < 50) {
-        *step = 0.1;
-    } else {
         *step = 0.25;
+    } else {
+        *step = 0.5;
     }
 }
 
@@ -57,7 +57,7 @@ int send_ray_draw_wall(struct map *map,
     t_bunny_position post;
 
     ds->count = 0;
-    step = 1;
+    step = 10;
     pos.x = start->x;
     pos.y = start->y;
     while (pos.x / map->tile_size < map->width
