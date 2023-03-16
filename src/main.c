@@ -27,7 +27,7 @@ static void init_s_map(struct display *ds)
 {
     char *map_name;
 
-    map_name = "maps/map6.txt";
+    map_name = "maps/map2.txt";
     put_map_in_table(ds, map_name);
     printf("hereafterpmit");
     if (ds->map.width > ds->map.height) {
