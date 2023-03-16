@@ -33,7 +33,7 @@ static void init_first_person_window(struct display *ds)
     //ds->col.wall      = mk_colour(0, 128, 128, 255);
     ds->col.bottom    = mk_colour(57, 255, 20, 255);
     ds->col.crosshair = mk_colour(0, 255, 0, 255);
-    width             = 500;
+    width             = 520;
     ds->win           = bunny_start((double) width * (double) 1.9,
                                     width,
                                     false,
