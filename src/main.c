@@ -36,8 +36,8 @@ static void init_first_person_window(struct display *ds)
                                     "fl: TP Runner - First_person");
     ds->px            = bunny_new_pixelarray(ds->win->buffer.width,
                                              ds->win->buffer.height);
-    ds->map.tile_size = 50;
-    ds->div_tile_size = ds->map.tile_size / 5;
+    ds->map.tile_size = 100;
+    ds->div_tile_size = ds->map.tile_size / 10;
 }
 
 static void init_labyrinth_info(struct display *ds)

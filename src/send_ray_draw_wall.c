@@ -57,7 +57,7 @@ int send_ray_draw_wall(struct map *map,
     t_bunny_position post;
 
     ds->count = 0;
-    step = 10;
+    step = 2;
     pos.x = start->x;
     pos.y = start->y;
     while (pos.x / map->tile_size < map->width
