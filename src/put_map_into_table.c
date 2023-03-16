@@ -89,12 +89,10 @@ static void put_number_in_table(struct display *ds, char *buffer)
         }
         n += 1;
     }
-    /*
-     * while (i != n) {
-     *     printf("%d ", ds->map.map[i]);
-     *     i += 1;
-     * }
-     */
+    while (i != n) {
+        printf("%d ", ds->map.map[i]);
+        i += 1;
+    }
 }
 
 void put_map_in_table(struct display *ds, char *map_name)
