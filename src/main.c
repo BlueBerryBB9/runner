@@ -41,7 +41,7 @@ static void init_first_person_window(struct display *ds)
     ds->px            = bunny_new_pixelarray(ds->win->buffer.width,
                                              ds->win->buffer.height);
     ds->map.tile_size = 100;
-    if (ds->map.width > 75 || ds->map.height > 75){
+    if (ds->map.width > 60 || ds->map.height > 75){
         ds->div_tile_size = 30;
     } else {
         ds->div_tile_size = 10;
