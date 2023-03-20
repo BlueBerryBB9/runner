@@ -25,7 +25,7 @@ static void clear_column(struct display *ds,
     bpos.x = column;
     bpos.y = ds->win->buffer.height - pos.y;
     if (block != 2) {
-        col = (155 * height) / ds->win->buffer.height;
+        col = (180 * height) / ds->win->buffer.height;
         stu_draw_line(ds->px, &pos, &bpos, mk_colour(75 + col,
                                                      75 + col,
                                                      75 + col,
