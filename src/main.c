@@ -57,8 +57,9 @@ static void stop_window(t_bunny_pixelarray *px, t_bunny_window *win)
 
 int main(int ac, char **av)
 {
-    ac = ac;
     struct display ds;
+
+    ac = ac;
     put_map_in_table(&ds, av[1]);
     init_first_person_window(&ds);
     init_labyrinth_info(&ds);

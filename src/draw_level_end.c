@@ -50,6 +50,7 @@ void draw_level_end(struct map map,
                     int time)
 {
     struct map nmap;
+
     map = map;
     nmap.width     = 19;
     nmap.height    = 10;
