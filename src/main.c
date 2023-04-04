@@ -8,29 +8,18 @@
 
 #include "graphic.h"
 
-static void init_s_map(struct display *ds, char *map)
-{
-    /*
-     * char *map_name;
-     * 
-     * map_name = "maps/map_50x50.txt";
-     */
-    put_map_in_table(ds, map);
-    /*
-     * if (ds->map.width > ds->map.height) {
-     *     ds->ratio = (double) ds->map.width / (double) ds->map.height;
-     * } else {
-     *     ds->ratio = (double) ds->map.height / (double) ds->map.width;
-     * }
-     */
-}
+/*
+ * static void init_s_map(struct display *ds, char *map)
+ * {
+ *     put_map_in_table(ds, map);
+ * }
+ */
 
 static void init_first_person_window(struct display *ds)
 {
     int width;
 
     ds->col.up        = mk_colour(0, 255, 255, 255);
-    //ds->col.wall      = mk_colour(0, 128, 128, 255);
     ds->col.bottom    = mk_colour(57, 255, 20, 255);
     ds->col.crosshair = mk_colour(0, 255, 0, 255);
     width             = 520;
@@ -70,7 +59,7 @@ int main(int ac, char **av)
 {
     ac = ac;
     struct display ds;
-    init_s_map(&ds, av[1]);
+    put_map_in_table(&ds, av[1]);
     init_first_person_window(&ds);
     init_labyrinth_info(&ds);
     draw_background(&ds, ds.px);

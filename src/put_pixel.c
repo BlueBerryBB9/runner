@@ -13,15 +13,10 @@ void put_pixel(t_bunny_pixelarray *px,
                unsigned int color)
 {
     int i;
-    int width;
-    int height;
     unsigned int *tableau;
 
-    width = px->clipable.clip_width;
-    height = px->clipable.clip_height;
-
-    i = pos->x + pos->y * width;
-    if (i > (width * height)) {
+    i = pos->x + pos->y * px->clipable.clip_width;
+    if (i > (px->clipable.clip_width * px->clipable.clip_height)) {
         return;
     }
     tableau = (unsigned int *) px->pixels;
