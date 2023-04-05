@@ -60,6 +60,10 @@ int main(int ac, char **av)
     struct display ds;
 
     ac = ac;
+    if (ac == 1) {
+        write(1, "Error : Need a map as argument\n", 31);
+        return -1;
+    }
     put_map_in_table(&ds, av[1]);
     init_first_person_window(&ds);
     init_labyrinth_info(&ds);
@@ -71,5 +75,5 @@ int main(int ac, char **av)
     bunny_set_loop_main_function(my_loop);
     bunny_loop(ds.win, 144, &ds);
     stop_window(ds.px, ds.win);
-    return (0);
+    return 0;
 }
