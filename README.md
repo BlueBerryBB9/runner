@@ -21,8 +21,5 @@
 - Very rewarding
 - Forced me to be rigorous at all times
 
-### Some images of the game :
-![image](https://github.com/BlueBerryBB9/runner/assets/118543302/8d9c642e-334f-4e9f-ac67-44ca0d391cf6)
-
 ### A game round
 ![demo](IMG_4962-ezgif.com-video-to-gif-converter.gif)
